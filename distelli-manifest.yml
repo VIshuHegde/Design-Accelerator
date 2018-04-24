@@ -1,4 +1,4 @@
-VIshuHegde/Design-Accelerator:
+gvishu2003/Design-Accelerator:
   PkgInclude:
     - '*.zip'
   Env:
@@ -36,9 +36,9 @@ VIshuHegde/Design-Accelerator:
     - echo "Begin PostInstall"
     - echo "Unzip WebApplication4 to Application Directory"
     # Using Powershell version 2
-    # - PowerShell (New-Object -COM Shell.Application).NameSpace('"%APPDIR%"').CopyHere((New-Object -COM Shell.Application).NameSpace('"%DIStELLI_INSTALLHOME%\DesignAccelerator.zip"').Items(), 1564);
+    # - PowerShell (New-Object -COM Shell.Application).NameSpace('"%APPDIR%"').CopyHere((New-Object -COM Shell.Application).NameSpace('"%DIStELLI_INSTALLHOME%\DA-App.zip"').Items(), 1564);
     # Using Powershell version 3+
-    - powershell add-type -assemblyname "system.io.compression.filesystem" ; [System.io.compression.zipfile]::ExtractToDirectory('"%DIStELLI_INSTALLHOME%\DesignAccelerator.zip"','"%APPDIR%"')
+    - powershell add-type -assemblyname "system.io.compression.filesystem" ; [System.io.compression.zipfile]::ExtractToDirectory('"%DIStELLI_INSTALLHOME%\DA-App.zip"','"%APPDIR%"')
     - echo "---"
     - echo "Set Directory Attributes"
     - attrib -r %APPDIR%\App_Data /s /d

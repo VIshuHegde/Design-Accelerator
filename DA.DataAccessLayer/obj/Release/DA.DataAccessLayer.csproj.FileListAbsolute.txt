@@ -10,15 +10,3 @@ D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.Sq
 D:\Projects\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.csprojResolveAssemblyReference.cache
 D:\Projects\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.dll
 D:\Projects\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.pdb
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DataAccessLayer.dll.config
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DataAccessLayer.dll
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DataAccessLayer.pdb
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DomainModel.dll
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.dll
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DomainModel.pdb
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.xml
-G:\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
-G:\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.csprojResolveAssemblyReference.cache
-G:\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.dll
-G:\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.pdb

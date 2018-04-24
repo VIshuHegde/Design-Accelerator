@@ -14,8 +14,6 @@
         border: 1px solid #000;
         position: relative;
         padding: 9.9px;
-        white-space: nowrap;
-        text-align:center;
     }
 
     .hide {
@@ -40,6 +38,9 @@
         border-left: 0px;
         border-bottom: 0px;
     }
+
+
+  
 
     .no-js #loader {
         display: none;
@@ -68,10 +69,10 @@
     }
 
 
-    #tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-    }
+        #tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
 
     td span.tooltiptext {
         transform-origin: 100px;
@@ -107,111 +108,70 @@
     }
      #TT {
         overflow-x: scroll;
-        margin-left: 38.1em;
+        margin-left: 38em;
         overflow-y: visible;
-        padding: 0px;
+        padding: 2px;
     }
-    
-    /*Sno header*/
+
     #headcol {
         position: absolute;
         width: 3.6em;
         left: 0;
-        height: 254px;
+        height: 255px;
         border-right: 0px none black;
-        padding-left: 3.6px;
-        padding-top: 115px;
-        /*text-align: center;*/
-        border: 1px solid #000;
+        padding-top: 170px;
     }
-    /*Sno body*/
+
     #colid {
         position: absolute;
         width: 3.6em;
         left: 0;
         border-right: 0px none black;
-        height: 3.7em;
+        height: 3.71em;
         border-top: 0px;
-        border: 1px solid #000;
-    }
-    /*rr header*/
-    #rridth {
-        position: absolute;
-        /*width: 7.9em;*/
-        width:290px; 
-        left: 0;
-        height: 254px;
-        border-right: 0px none black;
-        margin-left: 50px;
-        padding-top: 115px;
-        /*text-align: center;*/
-        border: 1px solid #000;
-    }
-    /*rr body*/
-    #rowidtd {
-        position: absolute;
-        /*width: 7.9em;*/
-        width:290px; 
-        left: 0;
-        border-right: 0px none black;
-        margin-left: 50px;
-        border-top: 0px;
-        height: 3.7em;
-        text-align: left;
-        border: 1px solid #000;
-    }
-    /*rn header*/
-    #Attrid {
-        width: 208px;
-        /*padding: 106px;*/
-        padding-top:115px;
-        left: 200px;
-        position: absolute;
-        margin-left: 140px;
-        height: 254px;
-        border-right: 0px;
-        /*text-align:center;*/
-        border: 1px solid #000;
-    }
-    /*rn body*/
-    #attrtd {
-        width: 208px;
-        padding: 13.5px;
-        left: 200px;
-        position: absolute;
-        margin-left: 140px;
-        border-top: 0px;
-        height: 3.7em;
-        border-right: 0px;
-        text-align:left;
-        border: 1px solid #000;
     }
 
-    /*rd header*/
-    #Repdescid {
-        position: absolute;
-        /*width: 7.9em;*/
-        width:180px; 
-        left: 0;
-        height: 254px;
-        border-right: 0px none black;
-        margin-left: 50px;
-        padding-top: 110px;
-        /*text-align: center;*/
-        border: 1px solid #000;
-    }
-    /*rd body*/
-    #repdesctd {
+    #rridth {
         position: absolute;
         width: 7.9em;
-        width:180px; 
+        left: 0;
+        height: 255px;
+        border-right: 0px none black;
+        margin-left: 50px;
+        padding-top: 170px;
+    }
+
+    #rowidtd {
+        position: absolute;
+        width: 7.9em;
         left: 0;
         border-right: 0px none black;
         margin-left: 50px;
         border-top: 0px;
-        height: 3.7em;
-        border: 1px solid #000;
+        height: 3.71em;
     }
+
+    #Attrid {
+        width: 390px;
+        padding: 106px;
+        left: 200px;
+        position: absolute;
+        margin-left: -40px;
+        height: 255px;
+        border-right: 0px;
+    }
+
+    #attrtd {
+        width: 390px;
+        padding: 11.5px;
+        left: 200px;
+        position: absolute;
+        margin-left: -40px;
+        border-top: 0px;
+        height: 3.71em;
+        border-right: 0px;
+    }
+
 
     .form-control {
         height: 30px;
@@ -275,50 +235,47 @@
 
             //To delete row
             $("#TT").on('click', 'button.removebutton', function () {
-                if (confirm("Do you want to delete this row?")) {
-                    rowCount=$('#TT tr').length;
-                    if(rowCount ==2)
-                    {
-                        alert("Cannot delete all the rows");
+
+                rowCount=$('#TT tr').length;
+                if(rowCount ==2)
+                {
+                    alert("Cannot delete all the rows");
+                }
+                else
+                {
+                    // var reportName = $("td:nth-child(3) input[type=text]").val();
+
+                    //to delete particular row pass <tr> to variable to find from particular input type
+                    var item = $(this).closest("tr");
+
+                    var reportName = item.find("td:nth-child(3) input[type=text]").val();
+
+                    var daid =$("#daId").val();
+
+                    var MyAppUrlSettings = {
+                        MyUsefulUrl: '@Url.Action("DeleteReport", "Reports")'
                     }
-                    else
-                    {
-                        // var reportName = $("td:nth-child(3) input[type=text]").val();
 
-                        //to delete particular row pass <tr> to variable to find from particular input type
-                        var item = $(this).closest("tr");
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        traditional: true,
+                        contentType: "application/json; charset=utf-8",
+                        url:MyAppUrlSettings.MyUsefulUrl,
+                        // url:"/Reports/DeleteReport/",
+                        //data: JSON.stringify(obj),
+                        data: JSON.stringify({ postData: reportName, DaId:daid}),//sending the id to delete from the db
+                        // async: false,
 
-                        var reportName = item.find("td:nth-child(3) input[type=text]").val();
-
-                        var daid =$("#daId").val();
-
-                        var sno = item.find("td:first-child").text();
-
-                        var MyAppUrlSettings = {
-                            MyUsefulUrl: '@Url.Action("DeleteReport", "Reports")'
+                        success: function (result) {
+                            alert("Selected value has been deleted for ReportName: " + reportName)
+                            isSuccess = result;
                         }
+                    });
 
-                        $.ajax({
-                            type: 'POST',
-                            dataType: "json",
-                            traditional: true,
-                            contentType: "application/json; charset=utf-8",
-                            url:MyAppUrlSettings.MyUsefulUrl,
-                            // url:"/Reports/DeleteReport/",
-                            //data: JSON.stringify(obj),
-                            data: JSON.stringify({ postData: reportName, DaId:daid}),//sending the id to delete from the db
-                            // async: false,
-
-                            success: function (result) {
-                                alert("Selected value has been deleted for row No :"+sno);
-                                isSuccess = result;
-                            }
-                        });
-
-                        $(this).closest('tr').remove();
-                        srno--;
-                        rindex(this);
-                    }
+                    $(this).closest('tr').remove();
+                    srno--;
+                    rindex(this);
                 }
                 return false;
             });
@@ -402,9 +359,9 @@
                         alert("Report name should not be empty in a row SlNo: "+ ($(this).index()+1));
                         return false;
                     }
-                    else if(text1 > 50)
+                    else if(text1 > 20)
                     {
-                        alert("Report name should not be greater than 50 characters");
+                        alert("Report name should not be greater than 20 characters");
                         return false;
                     }
 
@@ -522,17 +479,17 @@
             html = "<thead>" +
                    "    <tr id='r0'>" +
                    "        <th id ='headcol'>S No.</th>" +
-                   "        <th id ='rridth'>Requirement Reference*</th>" +
-                   "        <th id ='Attrid'>Report Name*</th>" +
-                   "        <th>Report Description*</th>"
+                   "        <th id ='rridth'>Requirement Reference</th>" +
+                   "        <th id='Attrid'>Report Name</th>" +
+                   "        <th>Report Description</th>"
 
             $.each(highLevelTransactions , function (index, value){
                 html = html +  "        <th><span class='temp'>" + value.HighLevelTxnID+'_'+value.HighLevelTxnDesc + "</span></th>";
             });
 
-            html = html +  "<th>Period*</th>" +
+            html = html +  "<th>Period</th>" +
 
-            "<th>System / Source*</th>" +
+            "<th>System / Source</th>" +
                 "<th>Delete</th>"+
                 "<th class='hide'>ID</th>     </tr>" +
                    "</thead>" ;
@@ -584,9 +541,9 @@
             currentRow=curRow[0];
             var row = $("<tr/>");
             $(row).html("<td id='colid'>"+ (srno++) +"</td>" + //1
-                         "<td id='rowidtd'><input name='reqref' type='text' maxlength='100' placeholder='Requirement Reference' onkeypress='return DisableSpecialChars(event)' class='form-control input-md' value='"+currentRow.reqReference+"'   /></td>" + //2
-                         "<td id='attrtd'><input name='reportName' type='text' onkeypress='return DisableAllSpecialChars(event)' maxlength='50' placeholder='Report Name' class='form-control input-md' value='"+currentRow.reportName +"' /></td>" + //2
-                         "<td><input name='reportDesc' type='text' onkeypress='return DisableSomeSpecialChars(event)' maxlength='100' placeholder='Report Description' class='form-control input-md' value='"+currentRow.reportDesc+"' /></td>" //3
+                         "<td id='rowidtd'><input name='reqref' type='text' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' value='"+currentRow.reqReference+"'   /></td>" + //2
+                         "<td id='attrtd'><input name='reportName' type='text' maxlength='20' placeholder='Report Name' class='form-control input-md' value='"+currentRow.reportName +"' /></td>" + //2
+                         "<td><input name='reportDesc' type='text' maxlength='100' placeholder='Report Description' class='form-control input-md' value='"+currentRow.reportDesc+"' /></td>" //3
             );
 
             //var isLinked= curRow[reportRowNum].transactionSeq ;
@@ -641,9 +598,9 @@
             var srno = 1;
             var row = $("<tr/>");
             $(row).html("<td id='colid'>"+ srno +"</td>" + //1
-                        "<td id='rowidtd'><input type='hidden' name='hdnReprtID' value=''><input name='reqref' type='text' maxlength='100' placeholder='Requirement Reference' onkeypress='return DisableSpecialChars(event)' class='form-control input-md'   /></td>" + //2
-                        "<td id='attrtd'><input name='reportName' type='text' onkeypress='return DisableAllSpecialChars(event)' maxlength='20' placeholder='Report Name' class='form-control input-md' /></td>" + //3
-                        "<td><input name='reportDesc' type='text' onkeypress='return DisableSomeSpecialChars(event)' maxlength='100' placeholder='Report Description' class='form-control input-md' /></td>" //3
+                        "<td id='rowidtd'><input type='hidden' name='hdnReprtID' value=''><input name='reqref' type='text' maxlength='100' placeholder='Requirement Reference' class='form-control input-md'   /></td>" + //2
+                        "<td id='attrtd'><input name='reportName' type='text' maxlength='20' placeholder='Report Name' class='form-control input-md' /></td>" + //3
+                        "<td><input name='reportDesc' type='text' maxlength='100' placeholder='Report Description' class='form-control input-md' /></td>" //3
             );
 
             $.each(model.lstHighLevelTxns , function (index, value){
@@ -730,41 +687,17 @@
             return tableRows;
         };
 
-        function DisableAllSpecialChars(e) {
-           
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            if (!regex.test(key)) {
-                if (event.charCode != 32) {//if key stroke is space bar, then pass. ASCII code for space bar is 32, dot is for 46
-                    event.preventDefault();
-                    return false;
-                }
-            }
-        }
+        //$("body").on("keydown","input[name='reqref']", function(e){
+        //    //, "input[name='reportName']", "input[name='reportDesc']"
+        //    var regex = new RegExp("^[a-zA-Z\b ][a-zA-Z0-9\b ]*$");
+        //    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        //    if (regex.test(str)) {
+        //        return true;
+        //    }
 
-        function DisableSpecialChars(e) {
-           
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            if (!regex.test(key)) {
-                if (event.charCode != 32 && event.charCode!=46) {//if key stroke is space bar, then pass. ASCII code for space bar is 32, dot is for 46
-                    event.preventDefault();
-                    return false;
-                }
-            }
-        }
-
-        function DisableSomeSpecialChars(e) {
-           
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            if (!regex.test(key)) {
-                if (event.charCode != 32 && event.charCode != 62 && event.charCode != 61 && event.charCode != 60) {//if key stroke is space bar, then pass. ASCII code for space bar is 32, dot is for 46
-                    event.preventDefault();
-                    return false;
-                }
-            }
-        }
+        //    e.preventDefault();
+        //    return false;
+        //});
     </script>
 
 }

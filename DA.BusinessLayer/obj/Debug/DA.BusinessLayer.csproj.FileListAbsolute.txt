@@ -11,16 +11,3 @@ D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Debug\EntityFramework.xml
 D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Debug\DA.BusinessLayer.csprojResolveAssemblyReference.cache
 D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Debug\DA.BusinessLayer.dll
 D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Debug\DA.BusinessLayer.pdb
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\DA.BusinessLayer.dll
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\DA.BusinessLayer.pdb
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\DA.DataAccessLayer.dll
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\DA.DomainModel.dll
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\EPPlus.dll
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\EntityFramework.dll
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\DA.DataAccessLayer.pdb
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\DA.DomainModel.pdb
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\EPPlus.xml
-G:\Design Accelerator\DA.BusinessLayer\bin\Debug\EntityFramework.xml
-G:\Design Accelerator\DA.BusinessLayer\obj\Debug\DA.BusinessLayer.csprojResolveAssemblyReference.cache
-G:\Design Accelerator\DA.BusinessLayer\obj\Debug\DA.BusinessLayer.dll
-G:\Design Accelerator\DA.BusinessLayer\obj\Debug\DA.BusinessLayer.pdb

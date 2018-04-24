@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="Default Web Site/DesignAccelerator" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^G:\\Design\ Accelerator\\DesignAccelerator\\obj\\Release\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^G:\\Design\ Accelerator\\DesignAccelerator\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Projects\\Design\ Accelerator\\DesignAccelerator\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Projects\\Design\ Accelerator\\DesignAccelerator\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="DbConnection-Web.config Connection String" description="" value="Data Source= 10.255.10.21; initial catalog = DA; persist security info=True; user id=sa; password=Admin@123;" tags="">
-    <parameterEntry kind="XmlFile" scope="G:\\Design\ Accelerator\\DesignAccelerator\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DbConnection']/@connectionString" />
+  <parameter name="DbConnection-Web.config Connection String" description="" value="Data Source= 10.255.10.12; initial catalog = DA; persist security info=True; user id=sa; password=Admin@123;" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\Design\ Accelerator\\DesignAccelerator\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DbConnection']/@connectionString" />
   </parameter>
 </parameters>

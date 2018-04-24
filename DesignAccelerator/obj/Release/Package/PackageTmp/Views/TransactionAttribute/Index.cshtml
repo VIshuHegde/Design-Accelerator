@@ -87,7 +87,7 @@
         overflow-y: visible;
         padding: 2px;
     }
-    /*Sno header*/
+
     #headcol {
         position: absolute;
         width: 3.6em;
@@ -95,10 +95,8 @@
         height: 255px;
         border-right: 0px none black;
         padding-top: 170px;
-        padding-left: 3.6px;
-        text-align: center;
     }
-    /*Sno body*/
+
     #colid {
         position: absolute;
         width: 3.6em;
@@ -107,53 +105,46 @@
         height: 3.2em;
         border-top: 0px;
     }
-    /*rr header*/
+
     #rridth {
         position: absolute;
-        width: 270px;
-        /*padding: 15.5px;*/
+        width: 7.9em;
         left: 0;
         height: 255px;
         border-right: 0px none black;
         margin-left: 50px;
         padding-top: 170px;
-        text-align: center;
     }
-    /*rr body*/
+
     #rowidtd {
         position: absolute;
-        /*width: 17em;*/
-        width: 245px;
+        width: 7.9em;
         left: 0;
         border-right: 0px none black;
         margin-left: 50px;
         border-top: 0px;
         height: 3.2em;
     }
-    /*attr header*/
+
     #Attrid {
-        width: 260px;
-        /*padding: 106px;*/
+        width: 390px;
+        padding: 106px;
         left: 200px;
         position: absolute;
-        margin-left: 90px;
+        margin-left: -40px;
         height: 255px;
         border-right: 0px;
-        padding-top: 170px;
-        text-align: center;
     }
-    /*attr body*/
+
     #attrtd {
-        width: 260px;
-        padding: 21.9px;
+        width: 390px;
+        padding: 11.5px;
         left: 200px;
         position: absolute;
-        margin-left: 90px;
+        margin-left: -40px;
         border-top: 0px;
         height: 3.2em;
-        border-right: 0px none black;
-        font-size:12px;
-
+        border-right: 0px;
     }
 
     .form-control {
@@ -207,13 +198,13 @@
     <script type="text/javascript">
         var highleveltransactions = [];
         var attributelist = [];
-        var _listAttr = JSON.parse('@Html.Raw(Json.Encode(ViewData["AttributeList"]))');
         $(document).ready(function () {
 
 
             $(".se-pre-con").fadeOut("slow");
 
             var model = @Html.Raw(Json.Encode(Model));
+
             $.each(model, function(index, value) {
                 if(value.HighLevelTransaction != null)
                 {
@@ -223,10 +214,12 @@
                 }
             });
 
-            $.each(_listAttr, function(index, value) {
-                attributelist.push(value); // Retrieving AttributeIds
+            $.each(model, function(index, value) {
+                if ($.inArray(value.AttributeId, attributelist)==-1) {
+                    attributelist.push(value.AttributeId); // Retrieving AttributeIds
+                }
             });
-            
+
             var transactionAttributeTable = makeTable(model, highleveltransactions, attributelist);
 
             var header_height = 0;
@@ -294,8 +287,8 @@
             html = "<thead>" +
                    "    <tr>" +
                    "        <th id ='headcol'>S No.</th>" +
-                   "        <th id ='rridth'>Requirement Reference*</th>" +
-                   "        <th id='Attrid'>Attributes*</th>"
+                   "        <th id ='rridth'>Requirement Reference</th>" +
+                   "        <th id='Attrid'>Attributes</th>"
             $.each(highleveltransactions , function (index, value){
                 html = html +  "        <th><span class='temp'>" + value + "</span></th>";
             });
@@ -320,9 +313,11 @@
                 {
                     for (var i=0;i<1;i++)
                     {
+
+
                         var row = $("<tr/>");
                         $(row).html("<td id='colid'>"+ (srno++) +"</td>" + //1
-                                    "<td id='rowidtd'><input name='reqref"+srno+"' type='text' onkeypress='return DisableSpecialChars(event)' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' value = '" + r[i].RequirementReference + "'  /></td>" + //2
+                                    "<td id='rowidtd'><input name='reqref"+srno+"' type='text' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' value = '" + r[i].RequirementReference + "'  /></td>" + //2
                                     "<td style='display:none;'>" + r[i].AttributeId + "</td>" + //3
                                     "<td id='attrtd'>" + r[i].AttributeName + "</td>"  + //4
                                     "<td style='display:none;'>" + r[i].AttributeTypeDesc + "</td>"  //5
@@ -379,8 +374,8 @@
             });
             return islinked;
         }
-
-
+      
+         
         function getJSONFromTable() {
 
             var tableRows = [];
@@ -415,18 +410,5 @@
             });
             return tableRows;
         };
-
-        function DisableSpecialChars(e) {
-
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            if (!regex.test(key)) {
-                if (event.charCode != 32 && event.charCode!=46) {//if key stroke is space bar, then pass. ASCII code for space bar is 32, dot is for 46
-                    event.preventDefault();
-                    return false;
-                }
-            }
-        }
-
     </script>
 }

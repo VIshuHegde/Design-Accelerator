@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="DATest" />
-  <setParameter name="DbConnection-Web.config Connection String" value="Data Source= 10.255.10.21; initial catalog = DA; persist security info=True; user id=sa; password=Admin@123;" />
-</parameters>
