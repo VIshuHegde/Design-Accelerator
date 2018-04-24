@@ -5,7 +5,7 @@ gvishu2003/Design-Accelerator:
     # Define the TCP port you want the IIS application to listen on
     - PORT: "8085"
     # Define the Name for the IIS application
-    - SITE: WebApplication4
+    - SITE: Design-Accelerator
     # Define the Directory full path where the IIS application should reside
     - APPDIR: c:\Design-Accelerator
   PreInstall:
@@ -34,7 +34,7 @@ gvishu2003/Design-Accelerator:
     - echo "Done PreInstall"
   PostInstall:
     - echo "Begin PostInstall"
-    - echo "Unzip WebApplication4 to Application Directory"
+    - echo "Unzip DA-App to Application Directory"
     # Using Powershell version 2
     # - PowerShell (New-Object -COM Shell.Application).NameSpace('"%APPDIR%"').CopyHere((New-Object -COM Shell.Application).NameSpace('"%DIStELLI_INSTALLHOME%\DA-App.zip"').Items(), 1564);
     # Using Powershell version 3+
