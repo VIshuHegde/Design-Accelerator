@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DesignAcceleratorModelStoreContainer" CdmEntityContainer="DesignAcceleratorEntities">
+    <EntitySetMapping Name="tbl_Applications">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Applications">
+        <MappingFragment StoreEntitySet="tbl_Applications">
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+          <ScalarProperty Name="DocVersion" ColumnName="DocVersion" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+          <ScalarProperty Name="BankType" ColumnName="BankType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AppVersion">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_AppVersion">
+        <MappingFragment StoreEntitySet="tbl_AppVersion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Attribute">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Attribute">
+        <MappingFragment StoreEntitySet="tbl_Attribute">
+          <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+          <ScalarProperty Name="AttributeDesc" ColumnName="AttributeDesc" />
+          <ScalarProperty Name="AttributeTypeID" ColumnName="AttributeTypeID" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AttributeType">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_AttributeType">
+        <MappingFragment StoreEntitySet="tbl_AttributeType">
+          <ScalarProperty Name="AttributeTypeID" ColumnName="AttributeTypeID" />
+          <ScalarProperty Name="AttributeTypeDesc" ColumnName="AttributeTypeDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AttributeValues">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_AttributeValues">
+        <MappingFragment StoreEntitySet="tbl_AttributeValues">
+          <ScalarProperty Name="AttrValueID" ColumnName="AttrValueID" />
+          <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+          <ScalarProperty Name="AttributeValue" ColumnName="AttributeValue" />
+          <ScalarProperty Name="isNegative" ColumnName="isNegative" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_BusinessRule">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_BusinessRule">
+        <MappingFragment StoreEntitySet="tbl_BusinessRule">
+          <ScalarProperty Name="BuzRuleID" ColumnName="BuzRuleID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+          <ScalarProperty Name="BuzRuleAttrMapID" ColumnName="BuzRuleAttrMapID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_BuzProd">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_BuzProd">
+        <MappingFragment StoreEntitySet="tbl_BuzProd">
+          <ScalarProperty Name="BuzProdID" ColumnName="BuzProdID" />
+          <ScalarProperty Name="BuzProdDesc" ColumnName="BuzProdDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_BuzRulesAttrMapping">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_BuzRulesAttrMapping">
+        <MappingFragment StoreEntitySet="tbl_BuzRulesAttrMapping">
+          <ScalarProperty Name="BuzRulesAttrMapID" ColumnName="BuzRulesAttrMapID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="BuzRuleDesc" ColumnName="BuzRuleDesc" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AttrID1" ColumnName="AttrID1" />
+          <ScalarProperty Name="AttrID2" ColumnName="AttrID2" />
+          <ScalarProperty Name="AttrID3" ColumnName="AttrID3" />
+          <ScalarProperty Name="AttrID4" ColumnName="AttrID4" />
+          <ScalarProperty Name="AttrID5" ColumnName="AttrID5" />
+          <ScalarProperty Name="AttrID6" ColumnName="AttrID6" />
+          <ScalarProperty Name="AttrID7" ColumnName="AttrID7" />
+          <ScalarProperty Name="AttrID8" ColumnName="AttrID8" />
+          <ScalarProperty Name="AttrID9" ColumnName="AttrID9" />
+          <ScalarProperty Name="AttrID10" ColumnName="AttrID10" />
+          <ScalarProperty Name="AttrValueID1" ColumnName="AttrValueID1" />
+          <ScalarProperty Name="AttrValueID2" ColumnName="AttrValueID2" />
+          <ScalarProperty Name="AttrValueID3" ColumnName="AttrValueID3" />
+          <ScalarProperty Name="AttrValueID4" ColumnName="AttrValueID4" />
+          <ScalarProperty Name="AttrValueID5" ColumnName="AttrValueID5" />
+          <ScalarProperty Name="AttrValueID6" ColumnName="AttrValueID6" />
+          <ScalarProperty Name="AttrValueID7" ColumnName="AttrValueID7" />
+          <ScalarProperty Name="AttrValueID8" ColumnName="AttrValueID8" />
+          <ScalarProperty Name="AttrValueID9" ColumnName="AttrValueID9" />
+          <ScalarProperty Name="AttrValueID10" ColumnName="AttrValueID10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ChannelAlert">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_ChannelAlert">
+        <MappingFragment StoreEntitySet="tbl_ChannelAlert">
+          <ScalarProperty Name="ChannelAlertID" ColumnName="ChannelAlertID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+          <ScalarProperty Name="ChannelAlertAttrMapID" ColumnName="ChannelAlertAttrMapID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ChannelAlertAttrMapping">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_ChannelAlertAttrMapping">
+        <MappingFragment StoreEntitySet="tbl_ChannelAlertAttrMapping">
+          <ScalarProperty Name="ChannelAlertAttrMapID" ColumnName="ChannelAlertAttrMapID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="MessageDesc" ColumnName="MessageDesc" />
+          <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+          <ScalarProperty Name="ModeTypeID" ColumnName="ModeTypeID" />
+          <ScalarProperty Name="DestnID" ColumnName="DestnID" />
+          <ScalarProperty Name="DistributionTypeID" ColumnName="DistributionTypeID" />
+          <ScalarProperty Name="FreqID" ColumnName="FreqID" />
+          <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+          <ScalarProperty Name="AttrID1" ColumnName="AttrID1" />
+          <ScalarProperty Name="AttrID2" ColumnName="AttrID2" />
+          <ScalarProperty Name="AttrID3" ColumnName="AttrID3" />
+          <ScalarProperty Name="AttrID4" ColumnName="AttrID4" />
+          <ScalarProperty Name="AttrID5" ColumnName="AttrID5" />
+          <ScalarProperty Name="AttrID6" ColumnName="AttrID6" />
+          <ScalarProperty Name="AttrID7" ColumnName="AttrID7" />
+          <ScalarProperty Name="AttrID8" ColumnName="AttrID8" />
+          <ScalarProperty Name="AttrID9" ColumnName="AttrID9" />
+          <ScalarProperty Name="AttrID10" ColumnName="AttrID10" />
+          <ScalarProperty Name="AttrValueID1" ColumnName="AttrValueID1" />
+          <ScalarProperty Name="AttrValueID2" ColumnName="AttrValueID2" />
+          <ScalarProperty Name="AttrValueID3" ColumnName="AttrValueID3" />
+          <ScalarProperty Name="AttrValueID4" ColumnName="AttrValueID4" />
+          <ScalarProperty Name="AttrValueID5" ColumnName="AttrValueID5" />
+          <ScalarProperty Name="AttrValueID6" ColumnName="AttrValueID6" />
+          <ScalarProperty Name="AttrValueID7" ColumnName="AttrValueID7" />
+          <ScalarProperty Name="AttrValueID8" ColumnName="AttrValueID8" />
+          <ScalarProperty Name="AttrValueID9" ColumnName="AttrValueID9" />
+          <ScalarProperty Name="AttrValueID10" ColumnName="AttrValueID10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Clients">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Clients">
+        <MappingFragment StoreEntitySet="tbl_Clients">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_DesignAccelerator">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_DesignAccelerator">
+        <MappingFragment StoreEntitySet="tbl_DesignAccelerator">
+          <ScalarProperty Name="daid" ColumnName="daid" />
+          <ScalarProperty Name="daName" ColumnName="daName" />
+          <ScalarProperty Name="dacomplete" ColumnName="dacomplete" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Destination">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Destination">
+        <MappingFragment StoreEntitySet="tbl_Destination">
+          <ScalarProperty Name="DestID" ColumnName="DestID" />
+          <ScalarProperty Name="DestDesc" ColumnName="DestDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_DistributionType">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_DistributionType">
+        <MappingFragment StoreEntitySet="tbl_DistributionType">
+          <ScalarProperty Name="DistributionTypeID" ColumnName="DistributionTypeID" />
+          <ScalarProperty Name="DistributionDesc" ColumnName="DistributionDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_FrequencyType">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_FrequencyType">
+        <MappingFragment StoreEntitySet="tbl_FrequencyType">
+          <ScalarProperty Name="FreqTypeID" ColumnName="FreqTypeID" />
+          <ScalarProperty Name="FreqTypeDesc" ColumnName="FreqTypeDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Interface">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Interface">
+        <MappingFragment StoreEntitySet="tbl_Interface">
+          <ScalarProperty Name="InterfaceID" ColumnName="InterfaceID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+          <ScalarProperty Name="InterfaceAttrMapID" ColumnName="InterfaceAttrMapID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_InterfaceAttrMapping">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_InterfaceAttrMapping">
+        <MappingFragment StoreEntitySet="tbl_InterfaceAttrMapping">
+          <ScalarProperty Name="InterfaceAttrMapID" ColumnName="InterfaceAttrMapID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="InterfaceDesc" ColumnName="InterfaceDesc" />
+          <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+          <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+          <ScalarProperty Name="ModeTypeId" ColumnName="ModeTypeId" />
+          <ScalarProperty Name="AttrID1" ColumnName="AttrID1" />
+          <ScalarProperty Name="AttrValueID1" ColumnName="AttrValueID1" />
+          <ScalarProperty Name="AttrID2" ColumnName="AttrID2" />
+          <ScalarProperty Name="AttrValueID2" ColumnName="AttrValueID2" />
+          <ScalarProperty Name="AttrID3" ColumnName="AttrID3" />
+          <ScalarProperty Name="AttrValueID3" ColumnName="AttrValueID3" />
+          <ScalarProperty Name="AttrID4" ColumnName="AttrID4" />
+          <ScalarProperty Name="AttrValueID4" ColumnName="AttrValueID4" />
+          <ScalarProperty Name="AttrID5" ColumnName="AttrID5" />
+          <ScalarProperty Name="AttrValueID5" ColumnName="AttrValueID5" />
+          <ScalarProperty Name="AttrID6" ColumnName="AttrID6" />
+          <ScalarProperty Name="AttrValueID6" ColumnName="AttrValueID6" />
+          <ScalarProperty Name="AttrID7" ColumnName="AttrID7" />
+          <ScalarProperty Name="AttrValueID7" ColumnName="AttrValueID7" />
+          <ScalarProperty Name="AttrID8" ColumnName="AttrID8" />
+          <ScalarProperty Name="AttrValueID8" ColumnName="AttrValueID8" />
+          <ScalarProperty Name="AttrID9" ColumnName="AttrID9" />
+          <ScalarProperty Name="AttrValueID9" ColumnName="AttrValueID9" />
+          <ScalarProperty Name="AttrID10" ColumnName="AttrID10" />
+          <ScalarProperty Name="AttrValueID10" ColumnName="AttrValueID10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_LifeCycle">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_LifeCycle">
+        <MappingFragment StoreEntitySet="tbl_LifeCycle">
+          <ScalarProperty Name="LifeCycleID" ColumnName="LifeCycleID" />
+          <ScalarProperty Name="LifeCycleDesc" ColumnName="LifeCycleDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_LOB">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_LOB">
+        <MappingFragment StoreEntitySet="tbl_LOB">
+          <ScalarProperty Name="LobID" ColumnName="LobID" />
+          <ScalarProperty Name="LobDesc" ColumnName="LobDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ModeType">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_ModeType">
+        <MappingFragment StoreEntitySet="tbl_ModeType">
+          <ScalarProperty Name="ModeTypeID" ColumnName="ModeTypeID" />
+          <ScalarProperty Name="ModeTypeDesc" ColumnName="ModeTypeDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Module">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Module">
+        <MappingFragment StoreEntitySet="tbl_Module">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_PeriodType">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_PeriodType">
+        <MappingFragment StoreEntitySet="tbl_PeriodType">
+          <ScalarProperty Name="PeriodTypeID" ColumnName="PeriodTypeID" />
+          <ScalarProperty Name="PeriodTypeDesc" ColumnName="PeriodTypeDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Products">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Products">
+        <MappingFragment StoreEntitySet="tbl_Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="LobID" ColumnName="LobID" />
+          <ScalarProperty Name="BuzProdID" ColumnName="BuzProdID" />
+          <ScalarProperty Name="daid" ColumnName="daid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Projects">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Projects">
+        <MappingFragment StoreEntitySet="tbl_Projects">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Region">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Region">
+        <MappingFragment StoreEntitySet="tbl_Region">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Reports">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Reports">
+        <MappingFragment StoreEntitySet="tbl_Reports">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="ReportDesc" ColumnName="ReportDesc" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+          <ScalarProperty Name="PeriodID" ColumnName="PeriodID" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+          <ScalarProperty Name="IsLinked" ColumnName="IsLinked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Roles">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Roles">
+        <MappingFragment StoreEntitySet="tbl_Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Source">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Source">
+        <MappingFragment StoreEntitySet="tbl_Source">
+          <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+          <ScalarProperty Name="SourceDesc" ColumnName="SourceDesc" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Transactions">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_Transactions">
+        <MappingFragment StoreEntitySet="tbl_Transactions">
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="HighLevelTxnID" ColumnName="HighLevelTxnID" />
+          <ScalarProperty Name="HighLevelTxnDesc" ColumnName="HighLevelTxnDesc" />
+          <ScalarProperty Name="LifeCycleID" ColumnName="LifeCycleID" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_TxnAttributeMapping">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_TxnAttributeMapping">
+        <MappingFragment StoreEntitySet="tbl_TxnAttributeMapping">
+          <ScalarProperty Name="MapID" ColumnName="MapID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+          <ScalarProperty Name="daId" ColumnName="daId" />
+          <ScalarProperty Name="isLinked" ColumnName="isLinked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_UserData">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_UserData">
+        <MappingFragment StoreEntitySet="tbl_UserData">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_DocsReferred">
+      <EntityTypeMapping TypeName="DesignAcceleratorModel.tbl_DocsReferred">
+        <MappingFragment StoreEntitySet="tbl_DocsReferred">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="DocVersion" ColumnName="DocVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tbl_UserMap" TypeName="DesignAcceleratorModel.tbl_UserMap" StoreEntitySet="tbl_UserMap">
+      <EndProperty Name="tbl_Projects">
+        <ScalarProperty Name="ProjectID" ColumnName="projectId" />
+      </EndProperty>
+      <EndProperty Name="tbl_UserData">
+        <ScalarProperty Name="UserID" ColumnName="userid" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="deleterow" FunctionName="DesignAcceleratorModel.Store.deleterow" />
+    <FunctionImportMapping FunctionImportName="sp_BusinessRuleMappingData" FunctionName="DesignAcceleratorModel.Store.sp_BusinessRuleMappingData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_BusinessRuleMappingData_Result">
+          <ScalarProperty Name="BuzRuleID" ColumnName="BuzRuleID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="AttributeDesc1" ColumnName="AttributeDesc1" />
+          <ScalarProperty Name="AttributeValue1" ColumnName="AttributeValue1" />
+          <ScalarProperty Name="AttributeDesc2" ColumnName="AttributeDesc2" />
+          <ScalarProperty Name="AttributeValue2" ColumnName="AttributeValue2" />
+          <ScalarProperty Name="AttributeDesc3" ColumnName="AttributeDesc3" />
+          <ScalarProperty Name="AttributeValue3" ColumnName="AttributeValue3" />
+          <ScalarProperty Name="AttributeDesc4" ColumnName="AttributeDesc4" />
+          <ScalarProperty Name="AttributeValue4" ColumnName="AttributeValue4" />
+          <ScalarProperty Name="AttributeDesc5" ColumnName="AttributeDesc5" />
+          <ScalarProperty Name="AttributeValue5" ColumnName="AttributeValue5" />
+          <ScalarProperty Name="AttributeDesc6" ColumnName="AttributeDesc6" />
+          <ScalarProperty Name="AttributeValue6" ColumnName="AttributeValue6" />
+          <ScalarProperty Name="AttributeDesc7" ColumnName="AttributeDesc7" />
+          <ScalarProperty Name="AttributeValue7" ColumnName="AttributeValue7" />
+          <ScalarProperty Name="AttributeDesc8" ColumnName="AttributeDesc8" />
+          <ScalarProperty Name="AttributeValue8" ColumnName="AttributeValue8" />
+          <ScalarProperty Name="AttributeDesc9" ColumnName="AttributeDesc9" />
+          <ScalarProperty Name="AttributeValue9" ColumnName="AttributeValue9" />
+          <ScalarProperty Name="AttributeDesc10" ColumnName="AttributeDesc10" />
+          <ScalarProperty Name="AttributeValue10" ColumnName="AttributeValue10" />
+          <ScalarProperty Name="HighLevelTxnDesc" ColumnName="HighLevelTxnDesc" />
+          <ScalarProperty Name="BuzRuleDesc" ColumnName="BuzRuleDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllBusinessRules" FunctionName="DesignAcceleratorModel.Store.sp_GetAllBusinessRules">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetAllBusinessRules_Result">
+          <ScalarProperty Name="BuzRuleID" ColumnName="BuzRuleID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="BuzRuleDesc" ColumnName="BuzRuleDesc" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="HIGHLEVELTXN" ColumnName="HIGHLEVELTXN" />
+          <ScalarProperty Name="BuzRuleAttrMapID" ColumnName="BuzRuleAttrMapID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AttrID1" ColumnName="AttrID1" />
+          <ScalarProperty Name="AttrID2" ColumnName="AttrID2" />
+          <ScalarProperty Name="AttrID3" ColumnName="AttrID3" />
+          <ScalarProperty Name="AttrID4" ColumnName="AttrID4" />
+          <ScalarProperty Name="AttrID5" ColumnName="AttrID5" />
+          <ScalarProperty Name="AttrID6" ColumnName="AttrID6" />
+          <ScalarProperty Name="AttrID7" ColumnName="AttrID7" />
+          <ScalarProperty Name="AttrID8" ColumnName="AttrID8" />
+          <ScalarProperty Name="AttrID9" ColumnName="AttrID9" />
+          <ScalarProperty Name="AttrID10" ColumnName="AttrID10" />
+          <ScalarProperty Name="AttrValueID1" ColumnName="AttrValueID1" />
+          <ScalarProperty Name="AttrValueID2" ColumnName="AttrValueID2" />
+          <ScalarProperty Name="AttrValueID3" ColumnName="AttrValueID3" />
+          <ScalarProperty Name="AttrValueID4" ColumnName="AttrValueID4" />
+          <ScalarProperty Name="AttrValueID5" ColumnName="AttrValueID5" />
+          <ScalarProperty Name="AttrValueID6" ColumnName="AttrValueID6" />
+          <ScalarProperty Name="AttrValueID7" ColumnName="AttrValueID7" />
+          <ScalarProperty Name="AttrValueID8" ColumnName="AttrValueID8" />
+          <ScalarProperty Name="AttrValueID9" ColumnName="AttrValueID9" />
+          <ScalarProperty Name="AttrValueID10" ColumnName="AttrValueID10" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllChannelsAndAlerts" FunctionName="DesignAcceleratorModel.Store.sp_GetAllChannelsAndAlerts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetAllChannelsAndAlerts_Result">
+          <ScalarProperty Name="ChannelAlertID" ColumnName="ChannelAlertID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="MessageDesc" ColumnName="MessageDesc" />
+          <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+          <ScalarProperty Name="ModeTypeID" ColumnName="ModeTypeID" />
+          <ScalarProperty Name="DestnID" ColumnName="DestnID" />
+          <ScalarProperty Name="DistributionTypeID" ColumnName="DistributionTypeID" />
+          <ScalarProperty Name="FreqID" ColumnName="FreqID" />
+          <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="HIGHLEVELTXN" ColumnName="HIGHLEVELTXN" />
+          <ScalarProperty Name="ChannelAlertAttrMapID" ColumnName="ChannelAlertAttrMapID" />
+          <ScalarProperty Name="AttrID1" ColumnName="AttrID1" />
+          <ScalarProperty Name="AttrID2" ColumnName="AttrID2" />
+          <ScalarProperty Name="AttrID3" ColumnName="AttrID3" />
+          <ScalarProperty Name="AttrID4" ColumnName="AttrID4" />
+          <ScalarProperty Name="AttrID5" ColumnName="AttrID5" />
+          <ScalarProperty Name="AttrID6" ColumnName="AttrID6" />
+          <ScalarProperty Name="AttrID7" ColumnName="AttrID7" />
+          <ScalarProperty Name="AttrID8" ColumnName="AttrID8" />
+          <ScalarProperty Name="AttrID9" ColumnName="AttrID9" />
+          <ScalarProperty Name="AttrID10" ColumnName="AttrID10" />
+          <ScalarProperty Name="AttrValueID1" ColumnName="AttrValueID1" />
+          <ScalarProperty Name="AttrValueID2" ColumnName="AttrValueID2" />
+          <ScalarProperty Name="AttrValueID3" ColumnName="AttrValueID3" />
+          <ScalarProperty Name="AttrValueID4" ColumnName="AttrValueID4" />
+          <ScalarProperty Name="AttrValueID5" ColumnName="AttrValueID5" />
+          <ScalarProperty Name="AttrValueID6" ColumnName="AttrValueID6" />
+          <ScalarProperty Name="AttrValueID7" ColumnName="AttrValueID7" />
+          <ScalarProperty Name="AttrValueID8" ColumnName="AttrValueID8" />
+          <ScalarProperty Name="AttrValueID9" ColumnName="AttrValueID9" />
+          <ScalarProperty Name="AttrValueID10" ColumnName="AttrValueID10" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetChannelsAndAlertsMappingData" FunctionName="DesignAcceleratorModel.Store.sp_GetChannelsAndAlertsMappingData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetChannelsAndAlertsMappingData_Result">
+          <ScalarProperty Name="ChannelAlertID" ColumnName="ChannelAlertID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="AttributeDesc1" ColumnName="AttributeDesc1" />
+          <ScalarProperty Name="AttributeValue1" ColumnName="AttributeValue1" />
+          <ScalarProperty Name="AttributeDesc2" ColumnName="AttributeDesc2" />
+          <ScalarProperty Name="AttributeValue2" ColumnName="AttributeValue2" />
+          <ScalarProperty Name="AttributeDesc3" ColumnName="AttributeDesc3" />
+          <ScalarProperty Name="AttributeValue3" ColumnName="AttributeValue3" />
+          <ScalarProperty Name="AttributeDesc4" ColumnName="AttributeDesc4" />
+          <ScalarProperty Name="AttributeValue4" ColumnName="AttributeValue4" />
+          <ScalarProperty Name="AttributeDesc5" ColumnName="AttributeDesc5" />
+          <ScalarProperty Name="AttributeValue5" ColumnName="AttributeValue5" />
+          <ScalarProperty Name="AttributeDesc6" ColumnName="AttributeDesc6" />
+          <ScalarProperty Name="AttributeValue6" ColumnName="AttributeValue6" />
+          <ScalarProperty Name="AttributeDesc7" ColumnName="AttributeDesc7" />
+          <ScalarProperty Name="AttributeValue7" ColumnName="AttributeValue7" />
+          <ScalarProperty Name="AttributeDesc8" ColumnName="AttributeDesc8" />
+          <ScalarProperty Name="AttributeValue8" ColumnName="AttributeValue8" />
+          <ScalarProperty Name="AttributeDesc9" ColumnName="AttributeDesc9" />
+          <ScalarProperty Name="AttributeValue9" ColumnName="AttributeValue9" />
+          <ScalarProperty Name="AttributeDesc10" ColumnName="AttributeDesc10" />
+          <ScalarProperty Name="AttributeValue10" ColumnName="AttributeValue10" />
+          <ScalarProperty Name="HighLevelTxnDesc" ColumnName="HighLevelTxnDesc" />
+          <ScalarProperty Name="MessageDesc" ColumnName="MessageDesc" />
+          <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+          <ScalarProperty Name="ModeTypeDesc" ColumnName="ModeTypeDesc" />
+          <ScalarProperty Name="FreqTypeDesc" ColumnName="FreqTypeDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetInterfaceMapping" FunctionName="DesignAcceleratorModel.Store.sp_GetInterfaceMapping">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetInterfaceMapping_Result">
+          <ScalarProperty Name="InterfaceID" ColumnName="InterfaceID" />
+          <ScalarProperty Name="InterfaceAttrMapID" ColumnName="InterfaceAttrMapID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="InterfaceDesc" ColumnName="InterfaceDesc" />
+          <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+          <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
+          <ScalarProperty Name="ModeTypeID" ColumnName="ModeTypeID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="HIGHLEVELTXN" ColumnName="HIGHLEVELTXN" />
+          <ScalarProperty Name="AttrID1" ColumnName="AttrID1" />
+          <ScalarProperty Name="AttrValueID1" ColumnName="AttrValueID1" />
+          <ScalarProperty Name="AttrID2" ColumnName="AttrID2" />
+          <ScalarProperty Name="AttrValueID2" ColumnName="AttrValueID2" />
+          <ScalarProperty Name="AttrID3" ColumnName="AttrID3" />
+          <ScalarProperty Name="AttrValueID3" ColumnName="AttrValueID3" />
+          <ScalarProperty Name="AttrID4" ColumnName="AttrID4" />
+          <ScalarProperty Name="AttrValueID4" ColumnName="AttrValueID4" />
+          <ScalarProperty Name="AttrID5" ColumnName="AttrID5" />
+          <ScalarProperty Name="AttrValueID5" ColumnName="AttrValueID5" />
+          <ScalarProperty Name="AttrID6" ColumnName="AttrID6" />
+          <ScalarProperty Name="AttrValueID6" ColumnName="AttrValueID6" />
+          <ScalarProperty Name="AttrID7" ColumnName="AttrID7" />
+          <ScalarProperty Name="AttrValueID7" ColumnName="AttrValueID7" />
+          <ScalarProperty Name="AttrID8" ColumnName="AttrID8" />
+          <ScalarProperty Name="AttrValueID8" ColumnName="AttrValueID8" />
+          <ScalarProperty Name="AttrID9" ColumnName="AttrID9" />
+          <ScalarProperty Name="AttrValueID9" ColumnName="AttrValueID9" />
+          <ScalarProperty Name="AttrID10" ColumnName="AttrID10" />
+          <ScalarProperty Name="AttrValueID10" ColumnName="AttrValueID10" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetReports" FunctionName="DesignAcceleratorModel.Store.sp_GetReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetReports_Result">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReqReference" ColumnName="ReqReference" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="ReportDesc" ColumnName="ReportDesc" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="HIGHLEVELTXN" ColumnName="HIGHLEVELTXN" />
+          <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+          <ScalarProperty Name="PeriodID" ColumnName="PeriodID" />
+          <ScalarProperty Name="IsLinked" ColumnName="IsLinked" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetReportsMappingData" FunctionName="DesignAcceleratorModel.Store.sp_GetReportsMappingData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetReportsMappingData_Result">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="HighLevelTxnDesc" ColumnName="HighLevelTxnDesc" />
+          <ScalarProperty Name="PeriodTypeDesc" ColumnName="PeriodTypeDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetTransactionAttributesMapping" FunctionName="DesignAcceleratorModel.Store.sp_GetTransactionAttributesMapping">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetTransactionAttributesMapping_Result">
+          <ScalarProperty Name="MAPID" ColumnName="MAPID" />
+          <ScalarProperty Name="REQREFERENCE" ColumnName="REQREFERENCE" />
+          <ScalarProperty Name="TRANSACTIONSEQ" ColumnName="TRANSACTIONSEQ" />
+          <ScalarProperty Name="HIGHLEVELTXN" ColumnName="HIGHLEVELTXN" />
+          <ScalarProperty Name="ISLINKED" ColumnName="ISLINKED" />
+          <ScalarProperty Name="ATTRIBUTEID" ColumnName="ATTRIBUTEID" />
+          <ScalarProperty Name="ATTRIBUTEDESC" ColumnName="ATTRIBUTEDESC" />
+          <ScalarProperty Name="ATTRIBUTETYPEDESC" ColumnName="ATTRIBUTETYPEDESC" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetTransactionsForHeader" FunctionName="DesignAcceleratorModel.Store.sp_GetTransactionsForHeader">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_GetTransactionsForHeader_Result">
+          <ScalarProperty Name="TRANSACTIONSEQ" ColumnName="TRANSACTIONSEQ" />
+          <ScalarProperty Name="HIGHLEVELTXN" ColumnName="HIGHLEVELTXN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InterfaceMappingData" FunctionName="DesignAcceleratorModel.Store.sp_InterfaceMappingData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DesignAcceleratorModel.sp_InterfaceMappingData_Result">
+          <ScalarProperty Name="InterfaceID" ColumnName="InterfaceID" />
+          <ScalarProperty Name="TransactionSeq" ColumnName="TransactionSeq" />
+          <ScalarProperty Name="AttributeDesc1" ColumnName="AttributeDesc1" />
+          <ScalarProperty Name="AttributeValue1" ColumnName="AttributeValue1" />
+          <ScalarProperty Name="AttributeDesc2" ColumnName="AttributeDesc2" />
+          <ScalarProperty Name="AttributeValue2" ColumnName="AttributeValue2" />
+          <ScalarProperty Name="AttributeDesc3" ColumnName="AttributeDesc3" />
+          <ScalarProperty Name="AttributeValue3" ColumnName="AttributeValue3" />
+          <ScalarProperty Name="AttributeDesc4" ColumnName="AttributeDesc4" />
+          <ScalarProperty Name="AttributeValue4" ColumnName="AttributeValue4" />
+          <ScalarProperty Name="AttributeDesc5" ColumnName="AttributeDesc5" />
+          <ScalarProperty Name="AttributeValue5" ColumnName="AttributeValue5" />
+          <ScalarProperty Name="AttributeDesc6" ColumnName="AttributeDesc6" />
+          <ScalarProperty Name="AttributeValue6" ColumnName="AttributeValue6" />
+          <ScalarProperty Name="AttributeDesc7" ColumnName="AttributeDesc7" />
+          <ScalarProperty Name="AttributeValue7" ColumnName="AttributeValue7" />
+          <ScalarProperty Name="AttributeDesc8" ColumnName="AttributeDesc8" />
+          <ScalarProperty Name="AttributeValue8" ColumnName="AttributeValue8" />
+          <ScalarProperty Name="AttributeDesc9" ColumnName="AttributeDesc9" />
+          <ScalarProperty Name="AttributeValue9" ColumnName="AttributeValue9" />
+          <ScalarProperty Name="AttributeDesc10" ColumnName="AttributeDesc10" />
+          <ScalarProperty Name="AttributeValue10" ColumnName="AttributeValue10" />
+          <ScalarProperty Name="HighLevelTxnDesc" ColumnName="HighLevelTxnDesc" />
+          <ScalarProperty Name="InterfaceDesc" ColumnName="InterfaceDesc" />
+          <ScalarProperty Name="SourceDesc" ColumnName="SourceDesc" />
+          <ScalarProperty Name="DestDesc" ColumnName="DestDesc" />
+          <ScalarProperty Name="ModeTypeDesc" ColumnName="ModeTypeDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

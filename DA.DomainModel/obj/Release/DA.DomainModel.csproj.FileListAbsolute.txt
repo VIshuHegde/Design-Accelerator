@@ -1,0 +1,4 @@
+D:\Projects\Design Accelerator\DA.DomainModel\bin\Release\DA.DomainModel.dll
+D:\Projects\Design Accelerator\DA.DomainModel\bin\Release\DA.DomainModel.pdb
+D:\Projects\Design Accelerator\DA.DomainModel\obj\Release\DA.DomainModel.dll
+D:\Projects\Design Accelerator\DA.DomainModel\obj\Release\DA.DomainModel.pdb

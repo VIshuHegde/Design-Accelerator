@@ -1,0 +1,13 @@
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\DA.BusinessLayer.dll
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\DA.BusinessLayer.pdb
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DataAccessLayer.dll
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DomainModel.dll
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\EPPlus.dll
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\EntityFramework.dll
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DataAccessLayer.pdb
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DomainModel.pdb
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\EPPlus.xml
+D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\EntityFramework.xml
+D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.csprojResolveAssemblyReference.cache
+D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.dll
+D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.pdb

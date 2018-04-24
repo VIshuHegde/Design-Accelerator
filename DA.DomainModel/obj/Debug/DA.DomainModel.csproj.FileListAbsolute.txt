@@ -1,0 +1,4 @@
+D:\Projects\Design Accelerator\DA.DomainModel\bin\Debug\DA.DomainModel.dll
+D:\Projects\Design Accelerator\DA.DomainModel\bin\Debug\DA.DomainModel.pdb
+D:\Projects\Design Accelerator\DA.DomainModel\obj\Debug\DA.DomainModel.dll
+D:\Projects\Design Accelerator\DA.DomainModel\obj\Debug\DA.DomainModel.pdb

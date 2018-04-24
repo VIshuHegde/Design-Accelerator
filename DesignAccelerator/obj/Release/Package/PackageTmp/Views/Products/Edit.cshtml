@@ -1,0 +1,52 @@
+﻿@model DesignAccelerator.Models.ViewModel.ProductsViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Edit Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.daid)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.lstLOB, "LOB", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LobID, new SelectList(Model.lstLOB, "LobID", "LobDesc"), "Select LOB", new { @class = "form-control", @required = "Required" })
+                @*<a href="@Url.Action("Index", "LOB", new {id = Model.daid})">Add LOB</a>*@
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.lstBuzProd, "Business Product", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BuzProdID, new SelectList(Model.lstBuzProd, "BuzProdID", "BuzProdDesc"), "Select Business Product", new { @class = "form-control", @required = "Required" })
+                @*<a href="@Url.Action("Index", "BusinessProducts", new { id = Model.daid})">Add BusinessProducts</a>*@
+            </div>
+        </div>
+         
+        <div class="form-group">
+            @Html.LabelFor(m => m.ReqReference, "ReqReference", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.ReqReference, new { @maxlength = "50", @class = "form-control", @required = "Required" })
+                @Html.ValidationMessageFor(m => m.ReqReference, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index")
+</div>

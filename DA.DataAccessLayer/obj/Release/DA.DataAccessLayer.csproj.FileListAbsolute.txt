@@ -1,0 +1,12 @@
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DataAccessLayer.dll.config
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DataAccessLayer.dll
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DataAccessLayer.pdb
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DomainModel.dll
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.dll
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\DA.DomainModel.pdb
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.xml
+D:\Projects\Design Accelerator\DA.DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
+D:\Projects\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.csprojResolveAssemblyReference.cache
+D:\Projects\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.dll
+D:\Projects\Design Accelerator\DA.DataAccessLayer\obj\Release\DA.DataAccessLayer.pdb
