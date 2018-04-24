@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DesignAcceleratorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_Actions">
+    <Key>
+      <PropertyRef Name="ActionID" />
+    </Key>
+    <Property Name="ActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_Applications">
     <Key>
       <PropertyRef Name="ApplicationID" />
@@ -215,6 +222,16 @@
     <NavigationProperty Name="tbl_ChannelAlertAttrMapping" Relationship="Self.FK_tbl_ChannelAlertAttrMapping_tbl_DistributionType" FromRole="tbl_DistributionType" ToRole="tbl_ChannelAlertAttrMapping" />
     <NavigationProperty Name="tbl_DesignAccelerator" Relationship="Self.FK_tbl_DesignAccelerator_tbl_DistributionType" FromRole="tbl_DistributionType" ToRole="tbl_DesignAccelerator" />
   </EntityType>
+  <EntityType Name="tbl_ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ClassName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="tbl_FrequencyType">
     <Key>
       <PropertyRef Name="FreqTypeID" />
@@ -346,7 +363,6 @@
     <NavigationProperty Name="tbl_Clients" Relationship="Self.FK_tbl_Clients_tbl_Projects" FromRole="tbl_Projects" ToRole="tbl_Clients" />
     <NavigationProperty Name="tbl_DocsReferred" Relationship="Self.FK_tbl_DocsReferred_tbl_Projects" FromRole="tbl_Projects" ToRole="tbl_DocsReferred" />
     <NavigationProperty Name="tbl_Region" Relationship="Self.FK_tbl_Projects_tbl_Region" FromRole="tbl_Projects" ToRole="tbl_Region" />
-    <NavigationProperty Name="tbl_UserData" Relationship="Self.tbl_UserMap" FromRole="tbl_Projects" ToRole="tbl_UserData" />
   </EntityType>
   <EntityType Name="tbl_Region">
     <Key>
@@ -362,7 +378,7 @@
     </Key>
     <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ReqReference" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ReportName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ReportDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TransactionSeq" Type="Int32" Nullable="false" />
     <Property Name="SourceID" Type="Int32" Nullable="false" />
@@ -380,7 +396,30 @@
     </Key>
     <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_RoleScreenMapping" Relationship="Self.FK__tbl_RoleS__RoleI__6383C8BA" FromRole="tbl_Roles" ToRole="tbl_RoleScreenMapping" />
     <NavigationProperty Name="tbl_UserData" Relationship="Self.FK_tbl_UserData_tbl_Roles" FromRole="tbl_Roles" ToRole="tbl_UserData" />
+  </EntityType>
+  <EntityType Name="tbl_RoleScreenMapping">
+    <Key>
+      <PropertyRef Name="RoleScreenMappingID" />
+    </Key>
+    <Property Name="RoleScreenMappingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="ScreenID" Type="Int32" />
+    <Property Name="ActionType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_Roles" Relationship="Self.FK__tbl_RoleS__RoleI__6383C8BA" FromRole="tbl_RoleScreenMapping" ToRole="tbl_Roles" />
+    <NavigationProperty Name="tbl_Screens" Relationship="Self.FK__tbl_RoleS__Scree__6477ECF3" FromRole="tbl_RoleScreenMapping" ToRole="tbl_Screens" />
+  </EntityType>
+  <EntityType Name="tbl_Screens">
+    <Key>
+      <PropertyRef Name="Screen_ID" />
+    </Key>
+    <Property Name="Screen_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScreenName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_RoleScreenMapping" Relationship="Self.FK__tbl_RoleS__Scree__6477ECF3" FromRole="tbl_Screens" ToRole="tbl_RoleScreenMapping" />
   </EntityType>
   <EntityType Name="tbl_Source">
     <Key>
@@ -426,16 +465,37 @@
     <NavigationProperty Name="tbl_DesignAccelerator" Relationship="Self.FK_tbl_DesignAccelerator_tbl_TxnAttributeMapping" FromRole="tbl_TxnAttributeMapping" ToRole="tbl_DesignAccelerator" />
     <NavigationProperty Name="tbl_Transactions" Relationship="Self.FK_tbl_Transactions_tbl_TxnAttributeMapping" FromRole="tbl_TxnAttributeMapping" ToRole="tbl_Transactions" />
   </EntityType>
+  <EntityType Name="tbl_UserActionArchives">
+    <Key>
+      <PropertyRef Name="UserArchiveID" />
+    </Key>
+    <Property Name="UserArchiveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="CreatorID" Type="Int32" Nullable="false" />
+    <Property Name="AuthID" Type="Int32" Nullable="false" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ArchiveCreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ActionID" Type="Int32" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_UserData">
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="CreatorID" Type="Int32" Nullable="false" />
+    <Property Name="AuthID" Type="Int32" Nullable="false" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tbl_Roles" Relationship="Self.FK_tbl_UserData_tbl_Roles" FromRole="tbl_UserData" ToRole="tbl_Roles" />
-    <NavigationProperty Name="tbl_Projects" Relationship="Self.tbl_UserMap" FromRole="tbl_UserData" ToRole="tbl_Projects" />
   </EntityType>
   <EntityType Name="tbl_DocsReferred">
     <Key>
@@ -1028,6 +1088,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__tbl_RoleS__RoleI__6383C8BA">
+    <End Role="tbl_Roles" Type="Self.tbl_Roles" Multiplicity="0..1" />
+    <End Role="tbl_RoleScreenMapping" Type="Self.tbl_RoleScreenMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="tbl_RoleScreenMapping">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_UserData_tbl_Roles">
     <End Role="tbl_Roles" Type="Self.tbl_Roles" Multiplicity="1" />
     <End Role="tbl_UserData" Type="Self.tbl_UserData" Multiplicity="*" />
@@ -1037,6 +1109,18 @@
       </Principal>
       <Dependent Role="tbl_UserData">
         <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RoleS__Scree__6477ECF3">
+    <End Role="tbl_Screens" Type="Self.tbl_Screens" Multiplicity="0..1" />
+    <End Role="tbl_RoleScreenMapping" Type="Self.tbl_RoleScreenMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Screens">
+        <PropertyRef Name="Screen_ID" />
+      </Principal>
+      <Dependent Role="tbl_RoleScreenMapping">
+        <PropertyRef Name="ScreenID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1052,11 +1136,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="tbl_UserMap">
-    <End Role="tbl_Projects" Type="Self.tbl_Projects" Multiplicity="*" />
-    <End Role="tbl_UserData" Type="Self.tbl_UserData" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="DesignAcceleratorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_Actions" EntityType="Self.tbl_Actions" />
     <EntitySet Name="tbl_Applications" EntityType="Self.tbl_Applications" />
     <EntitySet Name="tbl_AppVersion" EntityType="Self.tbl_AppVersion" />
     <EntitySet Name="tbl_Attribute" EntityType="Self.tbl_Attribute" />
@@ -1071,6 +1152,7 @@
     <EntitySet Name="tbl_DesignAccelerator" EntityType="Self.tbl_DesignAccelerator" />
     <EntitySet Name="tbl_Destination" EntityType="Self.tbl_Destination" />
     <EntitySet Name="tbl_DistributionType" EntityType="Self.tbl_DistributionType" />
+    <EntitySet Name="tbl_ErrorLog" EntityType="Self.tbl_ErrorLog" />
     <EntitySet Name="tbl_FrequencyType" EntityType="Self.tbl_FrequencyType" />
     <EntitySet Name="tbl_Interface" EntityType="Self.tbl_Interface" />
     <EntitySet Name="tbl_InterfaceAttrMapping" EntityType="Self.tbl_InterfaceAttrMapping" />
@@ -1084,9 +1166,12 @@
     <EntitySet Name="tbl_Region" EntityType="Self.tbl_Region" />
     <EntitySet Name="tbl_Reports" EntityType="Self.tbl_Reports" />
     <EntitySet Name="tbl_Roles" EntityType="Self.tbl_Roles" />
+    <EntitySet Name="tbl_RoleScreenMapping" EntityType="Self.tbl_RoleScreenMapping" />
+    <EntitySet Name="tbl_Screens" EntityType="Self.tbl_Screens" />
     <EntitySet Name="tbl_Source" EntityType="Self.tbl_Source" />
     <EntitySet Name="tbl_Transactions" EntityType="Self.tbl_Transactions" />
     <EntitySet Name="tbl_TxnAttributeMapping" EntityType="Self.tbl_TxnAttributeMapping" />
+    <EntitySet Name="tbl_UserActionArchives" EntityType="Self.tbl_UserActionArchives" />
     <EntitySet Name="tbl_UserData" EntityType="Self.tbl_UserData" />
     <EntitySet Name="tbl_DocsReferred" EntityType="Self.tbl_DocsReferred" />
     <AssociationSet Name="FK_tbl_DocsReferred_tbl_Applications" Association="Self.FK_tbl_DocsReferred_tbl_Applications">
@@ -1281,47 +1366,84 @@
       <End Role="tbl_Transactions" EntitySet="tbl_Transactions" />
       <End Role="tbl_Reports" EntitySet="tbl_Reports" />
     </AssociationSet>
+    <AssociationSet Name="FK__tbl_RoleS__RoleI__6383C8BA" Association="Self.FK__tbl_RoleS__RoleI__6383C8BA">
+      <End Role="tbl_Roles" EntitySet="tbl_Roles" />
+      <End Role="tbl_RoleScreenMapping" EntitySet="tbl_RoleScreenMapping" />
+    </AssociationSet>
     <AssociationSet Name="FK_tbl_UserData_tbl_Roles" Association="Self.FK_tbl_UserData_tbl_Roles">
       <End Role="tbl_Roles" EntitySet="tbl_Roles" />
       <End Role="tbl_UserData" EntitySet="tbl_UserData" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RoleS__Scree__6477ECF3" Association="Self.FK__tbl_RoleS__Scree__6477ECF3">
+      <End Role="tbl_Screens" EntitySet="tbl_Screens" />
+      <End Role="tbl_RoleScreenMapping" EntitySet="tbl_RoleScreenMapping" />
     </AssociationSet>
     <AssociationSet Name="FK_tbl_Transactions_tbl_TxnAttributeMapping" Association="Self.FK_tbl_Transactions_tbl_TxnAttributeMapping">
       <End Role="tbl_Transactions" EntitySet="tbl_Transactions" />
       <End Role="tbl_TxnAttributeMapping" EntitySet="tbl_TxnAttributeMapping" />
     </AssociationSet>
-    <AssociationSet Name="tbl_UserMap" Association="Self.tbl_UserMap">
-      <End Role="tbl_Projects" EntitySet="tbl_Projects" />
-      <End Role="tbl_UserData" EntitySet="tbl_UserData" />
-    </AssociationSet>
-    <FunctionImport Name="deleterow" />
-    <FunctionImport Name="sp_BusinessRuleMappingData" ReturnType="Collection(DesignAcceleratorModel.sp_BusinessRuleMappingData_Result)">
+    <FunctionImport Name="sp_BusinessRuleMappingData" ReturnType="Collection(DAModel.sp_BusinessRuleMappingData_Result)">
       <Parameter Name="DAid" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetAllBusinessRules" ReturnType="Collection(DesignAcceleratorModel.sp_GetAllBusinessRules_Result)">
+    <FunctionImport Name="sp_ExportExcelAttributes" ReturnType="Collection(DAModel.sp_ExportExcelAttributes_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetAllChannelsAndAlerts" ReturnType="Collection(DesignAcceleratorModel.sp_GetAllChannelsAndAlerts_Result)">
+    <FunctionImport Name="sp_ExportExcelBusinessRules" ReturnType="Collection(DAModel.sp_ExportExcelBusinessRules_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetChannelsAndAlertsMappingData" ReturnType="Collection(DesignAcceleratorModel.sp_GetChannelsAndAlertsMappingData_Result)">
+    <FunctionImport Name="sp_ExportExcelChannelsAlerts" ReturnType="Collection(DAModel.sp_ExportExcelChannelsAlerts_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetInterfaceMapping" ReturnType="Collection(DesignAcceleratorModel.sp_GetInterfaceMapping_Result)">
+    <FunctionImport Name="sp_ExportExcelInterface" ReturnType="Collection(DAModel.sp_ExportExcelInterface_Result)">
+      <Parameter Name="Daid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ExportExcelProduct" ReturnType="Collection(DAModel.sp_ExportExcelProduct_Result)" />
+    <FunctionImport Name="sp_ExportExcelReports" ReturnType="Collection(DAModel.sp_ExportExcelReports_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetReports" ReturnType="Collection(DesignAcceleratorModel.sp_GetReports_Result)">
+    <FunctionImport Name="sp_ExportExcelTransaction" ReturnType="Collection(DAModel.sp_ExportExcelTransaction_Result)" />
+    <FunctionImport Name="sp_ExportExcelTransactionAttribute" ReturnType="Collection(DAModel.sp_ExportExcelTransactionAttribute_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetReportsMappingData" ReturnType="Collection(DesignAcceleratorModel.sp_GetReportsMappingData_Result)">
+    <FunctionImport Name="sp_GetAllBusinessRules" ReturnType="Collection(DAModel.sp_GetAllBusinessRules_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetTransactionAttributesMapping" ReturnType="Collection(DesignAcceleratorModel.sp_GetTransactionAttributesMapping_Result)">
+    <FunctionImport Name="sp_GetAllChannelsAndAlerts" ReturnType="Collection(DAModel.sp_GetAllChannelsAndAlerts_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_GetTransactionsForHeader" ReturnType="Collection(DesignAcceleratorModel.sp_GetTransactionsForHeader_Result)">
+    <FunctionImport Name="sp_GetAuthorizers" ReturnType="Collection(DAModel.sp_GetAuthorizers_Result)">
+      <Parameter Name="RoleName" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetChannelsAndAlertsMappingData" ReturnType="Collection(DAModel.sp_GetChannelsAndAlertsMappingData_Result)">
       <Parameter Name="DAId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_InterfaceMappingData" ReturnType="Collection(DesignAcceleratorModel.sp_InterfaceMappingData_Result)">
+    <FunctionImport Name="sp_GetInterfaceMapping" ReturnType="Collection(DAModel.sp_GetInterfaceMapping_Result)">
+      <Parameter Name="DAId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetMappingViewModelData" ReturnType="Collection(DAModel.sp_GetMappingViewModelData_Result)">
+      <Parameter Name="DAID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetReports" ReturnType="Collection(DAModel.sp_GetReports_Result)">
+      <Parameter Name="DAId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetReportsMappingData" ReturnType="Collection(DAModel.sp_GetReportsMappingData_Result)">
+      <Parameter Name="DAId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetTransactionAttributesMapping" ReturnType="Collection(DAModel.sp_GetTransactionAttributesMapping_Result)">
+      <Parameter Name="DAId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetTransactionsForHeader" ReturnType="Collection(DAModel.sp_GetTransactionsForHeader_Result)">
+      <Parameter Name="DAId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetUserAccessInView" ReturnType="Collection(DAModel.sp_GetUserAccessInView_Result)">
+      <Parameter Name="ScreenName" Mode="In" Type="String" />
+      <Parameter Name="RoleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetUsersToAuthorize" ReturnType="Collection(DAModel.sp_GetUsersToAuthorize_Result)">
+      <Parameter Name="AuthId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InterfaceMappingData" ReturnType="Collection(DAModel.sp_InterfaceMappingData_Result)">
       <Parameter Name="DAid" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
@@ -1350,6 +1472,123 @@
     <Property Type="String" Name="AttributeValue10" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="HighLevelTxnDesc" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="BuzRuleDesc" Nullable="false" MaxLength="512" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelAttributes_Result">
+    <Property Type="String" Name="AttributeDesc" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeTypeDesc" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelBusinessRules_Result">
+    <Property Type="String" Name="Requirement_Reference" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="BuzRuleID" Nullable="false" />
+    <Property Type="String" Name="Function_Module" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Business_Rule_Description" Nullable="false" MaxLength="512" />
+    <Property Type="String" Name="Attribute1" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue1" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute2" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue2" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute3" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue3" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute4" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue4" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute5" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue5" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute6" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue6" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute7" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue7" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute8" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue8" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute9" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue9" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Attribute10" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="AttributeValue10" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Remarks" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelChannelsAlerts_Result">
+    <Property Type="String" Name="Requirement_Reference" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Source" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Function_Module" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="Attribute_1" Nullable="false" />
+    <Property Type="Int32" Name="Value_1" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_2" Nullable="false" />
+    <Property Type="Int32" Name="Value_2" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_3" Nullable="false" />
+    <Property Type="Int32" Name="Value_3" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_4" Nullable="false" />
+    <Property Type="Int32" Name="Value_4" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_5" Nullable="false" />
+    <Property Type="Int32" Name="Value_5" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_6" Nullable="false" />
+    <Property Type="Int32" Name="Value_6" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_7" Nullable="false" />
+    <Property Type="Int32" Name="Value_7" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_8" Nullable="false" />
+    <Property Type="Int32" Name="Value_8" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_9" Nullable="false" />
+    <Property Type="Int32" Name="Value_9" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_10" Nullable="false" />
+    <Property Type="Int32" Name="Value_10" Nullable="false" />
+    <Property Type="String" Name="Auto_Generated_Manual" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Mode" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Message_Desc" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Destination_Application_Device" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Distribution" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Frequency" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ChannelAlertID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelInterface_Result">
+    <Property Type="String" Name="Requirement_Reference" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Interface_Description" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="InterfaceID" Nullable="true" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Destination" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mode" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Attribute_1" Nullable="false" />
+    <Property Type="Int32" Name="Value_1" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_2" Nullable="false" />
+    <Property Type="Int32" Name="Value_2" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_3" Nullable="false" />
+    <Property Type="Int32" Name="Value_3" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_4" Nullable="false" />
+    <Property Type="Int32" Name="Value_4" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_5" Nullable="false" />
+    <Property Type="Int32" Name="Value_5" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_6" Nullable="false" />
+    <Property Type="Int32" Name="Value_6" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_7" Nullable="false" />
+    <Property Type="Int32" Name="Value_7" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_8" Nullable="false" />
+    <Property Type="Int32" Name="Value_8" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_9" Nullable="false" />
+    <Property Type="Int32" Name="Value_9" Nullable="false" />
+    <Property Type="Int32" Name="Attribute_10" Nullable="false" />
+    <Property Type="Int32" Name="Value_10" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelProduct_Result">
+    <Property Type="String" Name="Requirement_Reference" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LOB" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Business_Products" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelReports_Result">
+    <Property Type="String" Name="Requirement_Reference" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Report_Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ReportID" Nullable="true" />
+    <Property Type="String" Name="Report_Description" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Period" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="System_Source" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="TransactionSeq" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelTransaction_Result">
+    <Property Type="String" Name="Requirement_Reference" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Module" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Txn_ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="High_Level_Transactions" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Life_Cycle" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="sp_ExportExcelTransactionAttribute_Result">
+    <Property Type="String" Name="RequirementReference" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Attributes" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="HighLevelTransaction" Nullable="false" MaxLength="61" />
   </ComplexType>
   <ComplexType Name="sp_GetAllBusinessRules_Result">
     <Property Type="Int32" Name="BuzRuleID" Nullable="false" />
@@ -1414,6 +1653,10 @@
     <Property Type="Int32" Name="AttrValueID9" Nullable="true" />
     <Property Type="Int32" Name="AttrValueID10" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="sp_GetAuthorizers_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+  </ComplexType>
   <ComplexType Name="sp_GetChannelsAndAlertsMappingData_Result">
     <Property Type="Int32" Name="ChannelAlertID" Nullable="false" />
     <Property Type="Int32" Name="TransactionSeq" Nullable="false" />
@@ -1474,10 +1717,18 @@
     <Property Type="Int32" Name="AttrID10" Nullable="true" />
     <Property Type="Int32" Name="AttrValueID10" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="sp_GetMappingViewModelData_Result">
+    <Property Type="String" Name="HIGHLEVELTXNID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HIGHLEVELTXNDESC" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ATTRIBUTEID" Nullable="false" />
+    <Property Type="String" Name="ATTRIBUTEDESC" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="ATTRIBUTETYPEID" Nullable="false" />
+    <Property Type="String" Name="ATTRIBUTETYPEDESC" Nullable="false" MaxLength="20" />
+  </ComplexType>
   <ComplexType Name="sp_GetReports_Result">
     <Property Type="Int32" Name="ReportID" Nullable="false" />
     <Property Type="String" Name="ReqReference" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="ReportName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ReportName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="ReportDesc" Nullable="false" MaxLength="100" />
     <Property Type="Int32" Name="TransactionSeq" Nullable="false" />
     <Property Type="String" Name="HIGHLEVELTXN" Nullable="false" MaxLength="61" />
@@ -1488,7 +1739,7 @@
   <ComplexType Name="sp_GetReportsMappingData_Result">
     <Property Type="Int32" Name="ReportID" Nullable="false" />
     <Property Type="Int32" Name="TransactionSeq" Nullable="false" />
-    <Property Type="String" Name="ReportName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ReportName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="HighLevelTxnDesc" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="PeriodTypeDesc" Nullable="false" MaxLength="20" />
   </ComplexType>
@@ -1505,6 +1756,19 @@
   <ComplexType Name="sp_GetTransactionsForHeader_Result">
     <Property Type="Int32" Name="TRANSACTIONSEQ" Nullable="false" />
     <Property Type="String" Name="HIGHLEVELTXN" Nullable="false" MaxLength="61" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUserAccessInView_Result">
+    <Property Type="Int32" Name="RoleScreenMappingID" Nullable="false" />
+    <Property Type="String" Name="ActionType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUsersToAuthorize_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="RoleID" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Active" Nullable="false" MaxLength="1" />
   </ComplexType>
   <ComplexType Name="sp_InterfaceMappingData_Result">
     <Property Type="Int32" Name="InterfaceID" Nullable="false" />

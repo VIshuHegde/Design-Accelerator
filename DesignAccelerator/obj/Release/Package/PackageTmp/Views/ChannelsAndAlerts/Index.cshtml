@@ -6,7 +6,7 @@
 <div class="navbar-static-top">
     <ul class="breadcrumb"></ul>
 </div>
-<h2>ChannelAlerts Mapping</h2>
+<h2>Channel Alerts Mapping</h2>
 <hr />
 
 <style type="text/css">
@@ -14,13 +14,15 @@
         border: 1px solid #000;
         position: relative;
         padding: 10px;
+        white-space: nowrap;
+        text-align:center;
     }
 
     .hide {
         display: none;
     }
 
-   th span.temp {
+    th span.temp {
         transform-origin: 115px;
         transform: rotate(-90deg);
         margin: 2px 2px 2px 0;
@@ -66,7 +68,6 @@
         position: relative;
     }
 
-
         #tooltip:hover .tooltiptext {
             visibility: visible;
             opacity: 1;
@@ -105,73 +106,88 @@
         transition: opacity 1s;
     }
 
-     
     #TT {
         overflow-x: scroll;
-        margin-left: 38em;
+        margin-left: 38.6em;
         overflow-y: visible;
-        padding: 2px;
+        padding: 0px;
     }
 
+    /*Sno header*/
     #headcol {
         position: absolute;
         width: 3.6em;
         left: 0;
-        height: 255px;
+        height: 254px;
         border-right: 0px none black;
-        padding-top: 170px;
+        padding-left: 3.6px;
+        padding-top: 110px;
+        /*text-align: center;*/
+        border: 1px solid #000;
     }
-
+    /*Sno body*/
     #colid {
         position: absolute;
         width: 3.6em;
         left: 0;
         border-right: 0px none black;
-        height: 3.76em;
+        height: 3.74em;
         border-top: 0px;
+        border: 1px solid #000;
     }
 
+    /*rr header*/
     #rridth {
         position: absolute;
-        width: 7.9em;
+        /*width: 7.9em;*/
+        width: 300px;
         left: 0;
-        height: 255px;
+        height: 254px;
         border-right: 0px none black;
         margin-left: 50px;
-        padding-top: 170px;
+        padding-top: 110px;
+        /*text-align: center;*/
+        border: 1px solid #000;
     }
-
+    /*rr body*/
     #rowidtd {
         position: absolute;
-        width: 7.9em;
+        /*width: 7.9em;*/
+        width: 300px;
         left: 0;
         border-right: 0px none black;
         margin-left: 50px;
         border-top: 0px;
-        height: 3.76em;
+        height: 3.74em;
+        border: 1px solid #000;
     }
 
+    /*src header*/
     #Attrid {
-        width: 390px;
-        padding: 106px;
-        left: 200px;
+        width: 205px;
+        /*padding: 106px;*/
+        left: 190px;
         position: absolute;
-        margin-left: -40px;
-        height: 255px;
+        margin-left: 160px;
+        height: 254px;
         border-right: 0px;
+        padding-top: 110px;
+        /*text-align: center;*/
+        border: 1px solid #000;
     }
-
+    /*src body*/
     #attrtd {
-        width: 390px;
+        width: 205px;
         padding: 11.5px;
-        left: 200px;
+        left: 190px;
         position: absolute;
-        margin-left: -40px;
+        margin-left: 160px;
         border-top: 0px;
-        height: 3.76em;
-        border-right: 0px;
+        height: 3.74em;
+        border-right: 0px none black;
+        max-width: 310px;
+        border: 1px solid #000;
     }
-
 
     .form-control {
         height: 30px;
@@ -181,16 +197,16 @@
 {
     @Html.HiddenFor(model => model.daID)
     <div class="row clearfix">
-    <span class="navbar-left">
-    &nbsp;&nbsp;&nbsp;&nbsp;<a class="" href="@Url.Action("Index", "Reports", new { id = Model.daID })">Link To Reports</a>
-    <span class="glyphicon glyphicon-expand"></span>
-    </span>
-    <div class="col-md-12 column" id="divCA">
-    </div>
-    <div class="col-md-12 column">
-    <button id="btnSave" type="button" class="btn btn-primary">Save Changes</button>
-    <button id="btnAdd" type="button" class="btn btn-primary">Add New Row</button>
-    </div>
+        <span class="navbar-left">
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="" href="@Url.Action("Index", "Reports", new { id = Model.daID })">Link To Reports</a>
+            <span class="glyphicon glyphicon-expand"></span>
+        </span>
+        <div class="col-md-12 column" id="divCA">
+        </div>
+        <div class="col-md-12 column">
+            <button id="btnSave" type="button" class="btn btn-primary">Save Changes</button>
+            <button id="btnAdd" type="button" class="btn btn-primary">Add New Row</button>
+        </div>
     </div>
     <div class="se-pre-con"></div>
 
@@ -236,49 +252,50 @@
 
             //Mohseen
             $("#divCA").on('click', 'button.removebutton', function () {
-                //debugger;
-                var rlength = $('#TT tr').length;
-                if (rlength == 2){
-                    alert("Cannot delete this row...");
-                }
-                else{
 
-                    var $item = $(this).closest("tr")   // Finds the closest row <tr>
-
-                    var $tds = $item.find("td:last-child")//("td:nth-child(2)")
-                                                 .text()         // Retrieves the text within <td>
-
-
-                    //  $("#resultas").append($item);       // Outputs the answer
-                    var MyAppUrlSettings = {
-                        MyUsefulUrl: '@Url.Action("DeleteRowChannelAlert", "ChannelsAndAlerts")'
+                if (confirm("Do you want to delete this row?")) {
+                    //debugger;
+                    var rlength = $('#TT tr').length;
+                    if (rlength == 2){
+                        alert("Cannot delete this row...");
                     }
+                    else{
 
-                    $.ajax({
-                        type: 'POST',
-                        dataType: "json",
-                        traditional: true,
-                        contentType: "application/json; charset=utf-8",
-                        url:MyAppUrlSettings.MyUsefulUrl,
-                        // url:"/ChannelsAndAlerts/DeleteRowChannelAlert/",
-                        //data: JSON.stringify(obj),
-                        data: JSON.stringify({ postData: $tds}),//sending the id to delete from the db
-                        // async: false,
+                        var $item = $(this).closest("tr")   // Finds the closest row <tr>
 
+                        var $tds = $item.find("td:last-child")//("td:nth-child(2)")
+                                                     .text()         // Retrieves the text within <td>
 
-                        success: function (result) {
-                            alert("Selected value has been deleted for id:" + $tds)
-                            isSuccess = result;
+                        var sno = $item.find("td:first-child").text();
+
+                        //  $("#resultas").append($item);       // Outputs the answer
+                        var MyAppUrlSettings = {
+                            MyUsefulUrl: '@Url.Action("DeleteRowChannelAlert", "ChannelsAndAlerts")'
                         }
 
+                        $.ajax({
+                            type: 'POST',
+                            dataType: "json",
+                            traditional: true,
+                            contentType: "application/json; charset=utf-8",
+                            url:MyAppUrlSettings.MyUsefulUrl,
+                            // url:"/ChannelsAndAlerts/DeleteRowChannelAlert/",
+                            //data: JSON.stringify(obj),
+                            data: JSON.stringify({ postData: $tds}),//sending the id to delete from the db
+                            // async: false,
+
+                            success: function (result) {
+                                alert("Selected value has been deleted for row No :"+ sno);
+                                isSuccess = result;
+                            }
+
+                        });
 
 
-                    });
-
-
-                    $(this).closest('tr').remove();
-                    srno--;
-                    rindex(this);
+                        $(this).closest('tr').remove();
+                        srno--;
+                        rindex(this);
+                    }
                 }
                 return false;
             });
@@ -513,11 +530,11 @@
         {
             $("#TT table").each(function(){
 
-       
-            $('tr').each(function (index) {
-                $(this).find('td:nth-child(1)').html(index);
+
+                $('tr').each(function (index) {
+                    $(this).find('td:nth-child(1)').html(index);
+                });
             });
-        });
         }
 
         function makeTable(model, highleveltransactions, attributelist) {
@@ -588,12 +605,13 @@
 
         function LoadRow(currow, transeq,model)
         {
+            
             var chnlalrtsrownum =0;
             currentrow = currow[0];
             var srno = 1;
             var row = $("<tr/>");
             $(row).html("<td id='colid'>"+ (srno++) +"</td>" + //1
-                        "<td id='rowidtd'><input type='hidden' name='hdnMapID' value=" + currentrow.ChannelAlertAttrMapID +"><input name='reqref1' type='text' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' value ='" + currentrow.ReqReference  + "' /></td>");//Mohseen
+                        "<td id='rowidtd'><input type='hidden' name='hdnMapID' value=" + currentrow.ChannelAlertAttrMapID +"><input name='reqref1' type='text' onkeypress='return DisableSpecialChars(event)' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' value ='" + currentrow.ReqReference  + "' /></td>");//Mohseen
 
             var src=  "<td id='attrtd'><select name='source' class ='selectpicker'><option value='0'>--Select-- </option>";
 
@@ -645,11 +663,11 @@
                 if (attrsel ==0)
                 {
                     //debugger;
-                    $(row).append("<td><select name='Value"+j+"' class='selectpicker'><option value='0'>--Select Value--</option></select></td>");
+                    $(row).append("<td><select name='Value"+j+"' class='selectWidth'><option value='0'>--Select Value--</option></select></td>");
                 }
                 else{
 
-                    var attrval = "<td><select name='Value"+j+"' class='selectpicker'><option value='0'>--Select Value--</option>";
+                    var attrval = "<td><select name='Value"+j+"' class='selectWidth'><option value='0'>--Select Value--</option>";
                     var MyAppUrlSettings = {
                         MyUsefulUrl: '@Url.Action("GetValues", "ChannelsAndAlerts")'
                     }
@@ -703,7 +721,7 @@
             })+"</select></td>";
             $(row).append(obmode);
 
-            $(row).append("<td><input name='msgdesc' type='text' placeholder='Message Desc' maxlength='250' class='form-control input-md' value='"+ currentrow.MessageDesc +"' /></td>");
+            $(row).append("<td><input name='msgdesc' type='text' placeholder='Message Desc' onkeypress='return DisableSomeSpecialChars(event)' maxlength='250' class='form-control input-md' value='"+ currentrow.MessageDesc +"' /></td>");
 
             var destn=  "<td><select name='Destination' class ='selectpicker'><option value='0'>--Select--</option>";
 
@@ -746,16 +764,9 @@
 
             $(row).append("<td><button type='button' class='removebutton' title='Remove this row'>X</button></td>");
 
-            $(row).append("<td class=hide>"+currentrow.ChannelAlertAttrMapID+"<input type='hidden' name='hdnMapID'</td>");
-
-
-
-
-
+            $(row).append("<td class=hide>"+currentrow.ChannelAlertID+"<input type='hidden' name='hdnMapID'</td>");
 
             return row;
-
-
         }
 
         function AddRow(model)
@@ -763,7 +774,7 @@
             var srno = 1;
             var row = $("<tr/>");
             $(row).html("<td id='colid'>"+ srno +"</td>" + //1
-                        "<td id='rowidtd'><input type='hidden' name='hdnMapID' value='" + Date.now().toString().substr(6) + "00'><input name='reqref1' type='text' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' /></td>");
+                        "<td id='rowidtd'><input type='hidden' name='hdnMapID' value='" + Date.now().toString().substr(6) + "00'><input name='reqref1' type='text' onkeypress='return DisableSpecialChars(event)' maxlength='100' placeholder='Requirement Reference' class='form-control input-md' /></td>");
 
             var src=  "<td id='attrtd'><select name='source' class ='selectpicker'><option value='0' selected>--Select-- </option>";
 
@@ -793,7 +804,7 @@
                 }) + "</select> </td>";
                 $(row).append(attr);
 
-                $(row).append("<td><select name='Value"+j+"' class='selectpicker'><option value='0'>--Select Value--</option></select></td>");
+                $(row).append("<td><select name='Value"+j+"' class='selectWidth'><option value='0'>--Select Value--</option></select></td>");
             }
 
 
@@ -809,7 +820,7 @@
             })+"</select></td>";
             $(row).append(obmode);
 
-            $(row).append("<td><input name='msgdesc' type='text' placeholder='Message Desc' maxlength='250' class='form-control input-md' /></td>");
+            $(row).append("<td><input name='msgdesc' type='text' onkeypress='return DisableSomeSpecialChars(event)' placeholder='Message Desc' maxlength='250' class='form-control input-md' /></td>");
 
             var destn=  "<td><select name='Destination' class ='selectpicker'><option value='0'>--Select--</option>";
 
@@ -887,7 +898,7 @@
             var tableRows = [];
             $("#TT table").each(function(){
 
-            
+
                 $('tbody tr').each(function () {
                     var self = $(this);
                     var i = 4;
@@ -951,6 +962,30 @@
             });
             return tableRows;
         };
+
+        function DisableSpecialChars(e) {
+
+            var regex = new RegExp("^[a-zA-Z0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                if (event.charCode != 32 && event.charCode!=46) {//if key stroke is space bar, then pass. ASCII code for space bar is 32, dot is for 46
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        }
+
+        function DisableSomeSpecialChars(e) {
+
+            var regex = new RegExp("^[a-zA-Z0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                if (event.charCode != 32 && event.charCode != 62 && event.charCode != 61 && event.charCode != 60) {//if key stroke is space bar, then pass. ASCII code for space bar is 32, dot is for 46
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        }
 
     </script>
 

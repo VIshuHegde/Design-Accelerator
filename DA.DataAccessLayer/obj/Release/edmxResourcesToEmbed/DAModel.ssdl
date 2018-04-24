@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DesignAcceleratorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Actions">
+    <Key>
+      <PropertyRef Name="ActionID" />
+    </Key>
+    <Property Name="ActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActionName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_Applications">
     <Key>
       <PropertyRef Name="ApplicationID" />
@@ -166,7 +173,7 @@
     <Property Name="daId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'DesignAccelerator.dbo.tbl_DocsReferred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'DA.dbo.tbl_DocsReferred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="tbl_DocsReferred">
     <Key>
       <PropertyRef Name="ClientID" />
@@ -178,6 +185,16 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_DocsReferred' does not h
     <Property Name="ProjectID" Type="int" Nullable="false" />
     <Property Name="ApplicationID" Type="int" Nullable="false" />
     <Property Name="DocVersion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StackTrace" Type="varchar(max)" />
+    <Property Name="ErrorDescription" Type="varchar(max)" />
+    <Property Name="ClassName" Type="varchar" MaxLength="150" />
+    <Property Name="ErrorDate" Type="datetime" />
   </EntityType>
   <EntityType Name="tbl_FrequencyType">
     <Key>
@@ -298,7 +315,7 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_DocsReferred' does not h
     </Key>
     <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ReqReference" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="ReportName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ReportName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ReportDesc" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="TransactionSeq" Type="int" Nullable="false" />
     <Property Name="SourceID" Type="int" Nullable="false" />
@@ -312,6 +329,25 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_DocsReferred' does not h
     </Key>
     <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_RoleScreenMapping">
+    <Key>
+      <PropertyRef Name="RoleScreenMappingID" />
+    </Key>
+    <Property Name="RoleScreenMappingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="ScreenID" Type="int" />
+    <Property Name="ActionType" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbl_Screens">
+    <Key>
+      <PropertyRef Name="Screen_ID" />
+    </Key>
+    <Property Name="Screen_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScreenName" Type="varchar" MaxLength="30" />
+    <Property Name="Purpose" Type="varchar" MaxLength="200" />
+    <Property Name="UserType" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="tbl_Source">
     <Key>
@@ -343,25 +379,61 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_DocsReferred' does not h
     <Property Name="daId" Type="int" Nullable="false" />
     <Property Name="isLinked" Type="char" MaxLength="1" />
   </EntityType>
+  <EntityType Name="tbl_UserActionArchives">
+    <Key>
+      <PropertyRef Name="UserArchiveID" />
+    </Key>
+    <Property Name="UserArchiveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="CreatorID" Type="int" Nullable="false" />
+    <Property Name="AuthID" Type="int" Nullable="false" />
+    <Property Name="UserType" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ArchiveCreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ActionID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_UserData">
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
     <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="CreatorID" Type="int" Nullable="false" />
+    <Property Name="AuthID" Type="int" Nullable="false" />
+    <Property Name="UserType" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="tbl_UserMap">
-    <Key>
-      <PropertyRef Name="userid" />
-      <PropertyRef Name="projectId" />
-    </Key>
-    <Property Name="userid" Type="int" Nullable="false" />
-    <Property Name="projectId" Type="int" Nullable="false" />
-  </EntityType>
+  <Association Name="FK__tbl_RoleS__RoleI__6383C8BA">
+    <End Role="tbl_Roles" Type="Self.tbl_Roles" Multiplicity="0..1" />
+    <End Role="tbl_RoleScreenMapping" Type="Self.tbl_RoleScreenMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="tbl_RoleScreenMapping">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RoleS__Scree__6477ECF3">
+    <End Role="tbl_Screens" Type="Self.tbl_Screens" Multiplicity="0..1" />
+    <End Role="tbl_RoleScreenMapping" Type="Self.tbl_RoleScreenMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Screens">
+        <PropertyRef Name="Screen_ID" />
+      </Principal>
+      <Dependent Role="tbl_RoleScreenMapping">
+        <PropertyRef Name="ScreenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_Attribute_tbl_AttributeType">
     <End Role="tbl_AttributeType" Type="Self.tbl_AttributeType" Multiplicity="1" />
     <End Role="tbl_Attribute" Type="Self.tbl_Attribute" Multiplicity="*" />
@@ -878,18 +950,6 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tbl_Projects_tbl_UserMap">
-    <End Role="tbl_Projects" Type="Self.tbl_Projects" Multiplicity="1" />
-    <End Role="tbl_UserMap" Type="Self.tbl_UserMap" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Projects">
-        <PropertyRef Name="ProjectID" />
-      </Principal>
-      <Dependent Role="tbl_UserMap">
-        <PropertyRef Name="projectId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tbl_Reports_tbl_Source">
     <End Role="tbl_Source" Type="Self.tbl_Source" Multiplicity="1" />
     <End Role="tbl_Reports" Type="Self.tbl_Reports" Multiplicity="*" />
@@ -974,21 +1034,28 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tbl_UserData_tbl_UserMap">
-    <End Role="tbl_UserData" Type="Self.tbl_UserData" Multiplicity="1" />
-    <End Role="tbl_UserMap" Type="Self.tbl_UserMap" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_UserData">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="tbl_UserMap">
-        <PropertyRef Name="userid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Function Name="deleterow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_BusinessRuleMappingData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ExportExcelAttributes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DAId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ExportExcelBusinessRules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DAId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ExportExcelChannelsAlerts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DAId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ExportExcelInterface" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Daid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ExportExcelProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ExportExcelReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DAId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ExportExcelTransaction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ExportExcelTransactionAttribute" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DAId" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_GetAllBusinessRules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAId" Type="int" Mode="In" />
@@ -996,11 +1063,18 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
   <Function Name="sp_GetAllChannelsAndAlerts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAId" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_GetAuthorizers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleName" Type="varchar" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_GetChannelsAndAlertsMappingData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAId" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_GetInterfaceMapping" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetMappingViewModelData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DAID" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_GetReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAId" Type="int" Mode="In" />
@@ -1014,10 +1088,18 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
   <Function Name="sp_GetTransactionsForHeader" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAId" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_GetUserAccessInView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ScreenName" Type="varchar" Mode="In" />
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetUsersToAuthorize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AuthId" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_InterfaceMappingData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DAid" Type="int" Mode="In" />
   </Function>
-  <EntityContainer Name="DesignAcceleratorModelStoreContainer">
+  <EntityContainer Name="DAModelStoreContainer">
+    <EntitySet Name="tbl_Actions" EntityType="Self.tbl_Actions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Applications" EntityType="Self.tbl_Applications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_AppVersion" EntityType="Self.tbl_AppVersion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Attribute" EntityType="Self.tbl_Attribute" Schema="dbo" store:Type="Tables" />
@@ -1032,6 +1114,7 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
     <EntitySet Name="tbl_DesignAccelerator" EntityType="Self.tbl_DesignAccelerator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Destination" EntityType="Self.tbl_Destination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_DistributionType" EntityType="Self.tbl_DistributionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ErrorLog" EntityType="Self.tbl_ErrorLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_FrequencyType" EntityType="Self.tbl_FrequencyType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Interface" EntityType="Self.tbl_Interface" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_InterfaceAttrMapping" EntityType="Self.tbl_InterfaceAttrMapping" Schema="dbo" store:Type="Tables" />
@@ -1045,9 +1128,12 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
     <EntitySet Name="tbl_Region" EntityType="Self.tbl_Region" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Reports" EntityType="Self.tbl_Reports" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Roles" EntityType="Self.tbl_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RoleScreenMapping" EntityType="Self.tbl_RoleScreenMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Screens" EntityType="Self.tbl_Screens" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Source" EntityType="Self.tbl_Source" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Transactions" EntityType="Self.tbl_Transactions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_TxnAttributeMapping" EntityType="Self.tbl_TxnAttributeMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_UserActionArchives" EntityType="Self.tbl_UserActionArchives" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_UserData" EntityType="Self.tbl_UserData" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_DocsReferred" EntityType="Self.tbl_DocsReferred" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -1057,12 +1143,14 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
     [tbl_DocsReferred].[DocVersion] AS [DocVersion]
     FROM [dbo].[tbl_DocsReferred] AS [tbl_DocsReferred]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="tbl_UserMap" EntityType="Self.tbl_UserMap" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [tbl_UserMap].[userid] AS [userid], 
-    [tbl_UserMap].[projectId] AS [projectId]
-    FROM [dbo].[tbl_UserMap] AS [tbl_UserMap]</DefiningQuery>
-    </EntitySet>
+    <AssociationSet Name="FK__tbl_RoleS__RoleI__6383C8BA" Association="Self.FK__tbl_RoleS__RoleI__6383C8BA">
+      <End Role="tbl_Roles" EntitySet="tbl_Roles" />
+      <End Role="tbl_RoleScreenMapping" EntitySet="tbl_RoleScreenMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RoleS__Scree__6477ECF3" Association="Self.FK__tbl_RoleS__Scree__6477ECF3">
+      <End Role="tbl_Screens" EntitySet="tbl_Screens" />
+      <End Role="tbl_RoleScreenMapping" EntitySet="tbl_RoleScreenMapping" />
+    </AssociationSet>
     <AssociationSet Name="FK_tbl_Attribute_tbl_AttributeType" Association="Self.FK_tbl_Attribute_tbl_AttributeType">
       <End Role="tbl_AttributeType" EntitySet="tbl_AttributeType" />
       <End Role="tbl_Attribute" EntitySet="tbl_Attribute" />
@@ -1235,10 +1323,6 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
       <End Role="tbl_Region" EntitySet="tbl_Region" />
       <End Role="tbl_Projects" EntitySet="tbl_Projects" />
     </AssociationSet>
-    <AssociationSet Name="FK_tbl_Projects_tbl_UserMap" Association="Self.FK_tbl_Projects_tbl_UserMap">
-      <End Role="tbl_Projects" EntitySet="tbl_Projects" />
-      <End Role="tbl_UserMap" EntitySet="tbl_UserMap" />
-    </AssociationSet>
     <AssociationSet Name="FK_tbl_Reports_tbl_Source" Association="Self.FK_tbl_Reports_tbl_Source">
       <End Role="tbl_Source" EntitySet="tbl_Source" />
       <End Role="tbl_Reports" EntitySet="tbl_Reports" />
@@ -1266,10 +1350,6 @@ warning 6002: The table/view 'DesignAccelerator.dbo.tbl_UserMap' does not have a
     <AssociationSet Name="FK_tbl_UserData_tbl_Roles" Association="Self.FK_tbl_UserData_tbl_Roles">
       <End Role="tbl_Roles" EntitySet="tbl_Roles" />
       <End Role="tbl_UserData" EntitySet="tbl_UserData" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_UserData_tbl_UserMap" Association="Self.FK_tbl_UserData_tbl_UserMap">
-      <End Role="tbl_UserData" EntitySet="tbl_UserData" />
-      <End Role="tbl_UserMap" EntitySet="tbl_UserMap" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

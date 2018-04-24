@@ -6,6 +6,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .button {
+        background-color: #af2024;
+        color: #ffffff;
+    }
+</style>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -17,16 +24,18 @@
         @Html.HiddenFor(m => m.ModuleId)
 
         <div class="form-group">
-            @Html.LabelFor(m => m.ModuleName, "Module Name", new { @class = "col-md-2 control-label" })
+            @Html.Label("Module Name", htmlAttributes: new { @class = "col-md-2 control-label", @style = "text-align:left" })
             <div class="col-md-10">
-                @Html.EditorFor(m => m.ModuleName, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(m => m.ModuleName, "", new { @class = "text-danger" })
+                <span class="form-inline" style="margin-left:-90px">
+                    @Html.EditorFor(m => m.ModuleName, new { htmlAttributes = new { @class = "form-control", @required = "required", @readonly = "true" } })
+                    @Html.ValidationMessageFor(m => m.ModuleName, "", new { @class = "text-danger" })
+                </span>
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="btnDelete" value="Delete" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-10" style="margin-left:105px">
+                <input type="submit" id="btnDelete" value="Delete" class="btn btn-default; button" />
             </div>
         </div>
     </div>

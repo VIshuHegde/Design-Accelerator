@@ -1,10 +1,17 @@
 ﻿@using DesignAccelerator.Models.ViewModel
 @model ApplicationViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .button {
+        background-color: #af2024;
+        color: #ffffff;
+    }
+</style>
 
 <div class="navbar-static-top">
     <ul class="breadcrumb"></ul>
@@ -13,38 +20,45 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <section id="ApplicationForm">
             @using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(m => m.ProjectID)
-                @Html.HiddenFor(m=>m.ClientId)
+                @Html.HiddenFor(m => m.ClientId)
+
                 <div class="form-group">
-                    @Html.Label("Application Name", new { @class = "col-md-2 control-label" })
+                    @Html.Label("Application Name*", new { @class = "col-md-2 control-label", @style = "text-align:left" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ApplicationName, new { @maxlength = "50", @class = "form-control", @required = "required" })
-                        @Html.ValidationMessageFor(m => m.ApplicationName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.AppVersion, "Application Version", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        <span class="form-inline">
-                            @Html.DropDownListFor(m => m.AppVersionId, new SelectList(Model.lstAppVersion, "Id ", "AppVersion"), "--Select--", new { @class = "form-control", @required = "Required" })
-                            &nbsp;&nbsp;<a href="@Url.Action("Index", "AppVersion")">Add App Version</a>
+                        <span class="form-inline" style="margin-left:-50px">
+                            @Html.TextBoxFor(m => m.ApplicationName, new { @maxlength = "50", @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(m => m.ApplicationName, "", new { @class = "text-danger" })
                         </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.BankTypeList, "Bank Type", new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.AppVersion, "Application Version*", new { @class = "col-md-2 control-label", @style = "text-align:left" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(m => m.BankType, new SelectList(Model.BankTypeList, "Value", "Key"), "--Select--", new { @class = "form-control", @required = "Required" })
+                        <span class="form-inline" style="margin-left:-50px">
+                            @Html.DropDownListFor(m => m.AppVersionId, new SelectList(Model.lstAppVersion, "Id ", "AppVersion"), "--Select--", new { @class = "form-control", @required = "Required" })
+                            &nbsp;&nbsp;<a href="@Url.Action("Index", "AppVersion")">Add Application Version</a>
+                        </span>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input id="btnSave" type="submit" value="Add" name="action:Add" class="btn btn-default" />
+                    @Html.LabelFor(m => m.BankTypeList, "Bank Type*", new { @class = "col-md-2 control-label", @style = "text-align:left" })
+                    <div class="col-md-10">
+                        <span class="form-inline" style="margin-left:-50px">
+                            @Html.DropDownListFor(m => m.BankType, new SelectList(Model.BankTypeList, "Value", "Key"), "--Select--", new { @class = "form-control", @required = "Required" })
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8" style="margin-left:145px">
+                        <input id="btnSave" type="submit" value="Add" name="action:Add" class="btn btn-default; button" />
                         @*<input type="submit" value="Cancel" onclick="Cancel()" class="btn btn-default" />*@
                     </div>
                 </div>
@@ -75,7 +89,7 @@
               columns: new[] {
                                 grid.Column(header: "S.No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, canSort:true),
                                 grid.Column("ApplicationName",header: "Application Name",canSort:true,format: (item) => Html.ActionLink(((string)item.ApplicationName), "Index", "Module", new { id = item.ApplicationID }, null)),
-                                grid.Column("AppVersion",header: "App Version",canSort:true),
+                                grid.Column("AppVersion",header: "Application Version",canSort:true),
                                 grid.Column("BankTypeName",header: "Bank Type",canSort:true),
                                 grid.Column("ApplicationID",header:"Edit/Delete",canSort:false,
                                  format: @<text>
@@ -99,6 +113,18 @@
             $('.breadcrumb').append('<li><a href="@Url.Action("Index", "Project", new {id = Model.ClientId })"><span>' + "@Model.ProjectName" + '</span></a></li>');
         });
 
+        $("#ApplicationName").bind('keypress', function (event) {
+
+            var regex = new RegExp("^[a-zA-Z0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                if (event.charCode != 32) {//if key stroke is space bar, then pass. ASCII code for space bar is 32
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        });
+
 
 
     </script>
@@ -110,7 +136,7 @@
             $("#ApplicationName").val("");
             $('#AppVersionId').find('option:first').attr('selected', 'selected');
             $('#BankType').find('option:first').attr('selected', 'selected');
-             
+
         </script>
     }
 }

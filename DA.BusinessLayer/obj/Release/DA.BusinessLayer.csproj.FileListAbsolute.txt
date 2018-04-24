@@ -11,3 +11,15 @@ D:\Projects\Design Accelerator\DA.BusinessLayer\bin\Release\EntityFramework.xml
 D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.csprojResolveAssemblyReference.cache
 D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.dll
 D:\Projects\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.pdb
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\DA.BusinessLayer.dll
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\DA.BusinessLayer.pdb
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DataAccessLayer.dll
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DomainModel.dll
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\EntityFramework.dll
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DataAccessLayer.pdb
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\DA.DomainModel.pdb
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\EPPlus.xml
+G:\Design Accelerator\DA.BusinessLayer\bin\Release\EntityFramework.xml
+G:\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.csprojResolveAssemblyReference.cache
+G:\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.dll
+G:\Design Accelerator\DA.BusinessLayer\obj\Release\DA.BusinessLayer.pdb

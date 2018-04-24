@@ -6,6 +6,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .button {
+        background-color: #af2024;
+        color: #ffffff;
+    }
+</style>
+
 <div class="navbar-static-top">
     <ul class="breadcrumb"></ul>
 </div>
@@ -13,7 +20,7 @@
 <h2>Transactions</h2>
 <hr />
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <section id="TransactionsForm">
             @using (Html.BeginForm("Index", "Transactions", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -23,46 +30,48 @@
                 @Html.HiddenFor(m => m.daId)
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.HighLevelTxnID, "HighLevelTxnID", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        <span class="form-inline">
+                    @Html.LabelFor(m => m.HighLevelTxnID, "High Level Transaction ID*", new { @class = "col-md-3 control-label", @style = "text-align:left" })
+                    <div class="col-md-6">
+                        <span class="form-inline" style="margin-left:-70px">
                             @Html.TextBoxFor(m => m.HighLevelTxnID, new { @maxlength = "10", @class = "form-control", @required = "Required" })
                             @Html.ValidationMessageFor(m => m.HighLevelTxnID, "", new { @class = "text-danger" })
-                            <span class="navbar-right">
-                                <a class="" id="linkToAttr" href="@Url.Action("Index", "AttributeList", new {id = Model.daId })">Link To Attribute List Input</a>
-                                <span class="glyphicon glyphicon-expand" id="glyphiconHide"></span>
-                            </span>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="navbar-left">
+                            <a class="" id="linkToAttr" href="@Url.Action("Index", "AttributeList", new {id = Model.daId })">Link To Attribute List Input</a>
+                            <span class="glyphicon glyphicon-expand" id="glyphiconHide"></span>
                         </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.HighLevelTxnDesc , "High Level Transaction", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        <span class="form-inline">
+                    @Html.LabelFor(m => m.HighLevelTxnDesc , "High Level Transaction*", new { @class = "col-md-3 control-label", @style = "text-align:left" })
+                    <div class="col-md-9">
+                        <span class="form-inline" style="margin-left:-70px">
                             @Html.TextBoxFor(m => m.HighLevelTxnDesc, new { @maxlength = "50", @class = "form-control", @required = "Required" })
                             @Html.ValidationMessageFor(m => m.HighLevelTxnDesc, "", new { @class = "text-danger" })
                         </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.lstLifeCycle, "LifeCycle ", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        <span class="form-inline">
+                    @Html.LabelFor(m => m.lstLifeCycle, "Life Cycle*", new { @class = "col-md-3 control-label", @style = "text-align:left" })
+                    <div class="col-md-9">
+                        <span class="form-inline" style="margin-left:-70px">
                             @Html.DropDownListFor(model => model.LifeCycleID, new SelectList(Model.lstLifeCycle, "LifeCycleID ", "LifeCycleDesc"), "---Select---", new { @class = "form-control", @required = "Required" })
                             &nbsp;&nbsp;<a href="@Url.Action("Index", "LifeCycles", new {id = Model.daId })">Add Life Cycle</a>
                         </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.ReqReference, "ReqReference:", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(m => m.ReqReference, "Requirement Reference*", new { @class = "col-md-3 control-label", @style = "text-align:left" })
+                    <div class="col-md-9" style="margin-left:-70px">
                         @Html.TextBoxFor(m => m.ReqReference, new { @maxlength = "50", @class = "form-control", @required = "Required" })
                         @Html.ValidationMessageFor(m => m.ReqReference, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                       <input id="btnSave" type="submit" value="Add" name="action:Add" class="btn btn-default" />
+                    <div class="col-md-offset-3 col-md-9" style="margin-left:222px">
+                       <input id="btnSave" type="submit" value="Add" name="action:Add" class="btn btn-default; button" />
                        @*@ <input type="submit" value="Cancel" onclick="Cancel()" class="btn btn-default" />*@
                     </div>
                 </div>
@@ -78,7 +87,7 @@
 @{
     IEnumerable<TransactionsViewModel> LifeCycleTransviewmodel2 = ViewData["transviewmodel1"] as IEnumerable<TransactionsViewModel>;
 }
-<div style="width:70%;">
+<div style="width:80%;">
     @{
         WebGrid grid = new WebGrid(LifeCycleTransviewmodel2);
        var count = grid.Rows.Count;
@@ -97,9 +106,10 @@
               lastText: "Last >>",
               columns: new[] {
                                 grid.Column(header: "S.No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, canSort:true),
-                                grid.Column("ReqReference",header: "ReqReference",canSort:true),
-                                grid.Column("HighLevelTxnID",header: "HighLevelTxnID",canSort:true),
-                                grid.Column("HighLevelTxnDesc",header: "HighLevelTxnDesc",canSort:true),
+                                grid.Column("ReqReference",header: "Requirement Reference",canSort:true),
+                                grid.Column("HighLevelTxnID",header: "High Level Transaction ID",canSort:true),
+                                grid.Column("HighLevelTxnDesc",header: "High Level Transaction",canSort:true),
+                                grid.Column("LifeCycleDesc",header: "Life Cycle",canSort:true),
                                 grid.Column("TransactionSeq",header:"Edit/Delete",canSort:false,
                                  format: @<text>
                                     @Html.ActionLink("Edit |", "Edit", new { id=item.TransactionSeq})
@@ -148,19 +158,11 @@
 
     //Added code to disable the underscore in high level transaction
 
-    $("#HighLevelTxnDesc").keypress(function (e) {
-        var keycode = e.charCode || e.keyCode;
-        if (keycode == 95) { //ASCII value of underscore key = 95;
-            return false;
-        }
-    });
+  
 
     // cannot copy or paste the value for safety purpose(to prevent under score)
 
-    $('#HighLevelTxnDesc').bind("cut copy paste", function (e) {
-        e.preventDefault();
-    });
-
+    
     //for reference
     //var HlTxDesc = $("#HighLevelTxnDesc").val();
     //var get_HLTxDesc = $(this).find("td:nth-child(4)")[0].innerText;
@@ -180,5 +182,31 @@
                 }
             });
         });
+
+        $("#HighLevelTxnDesc").bind('keypress', function (event) {
+
+            var regex = new RegExp("^[a-zA-Z0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                if (event.charCode != 32) {//if key stroke is space bar, then pass. ASCII code for space bar is 32
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        });
+
+        $("#ReqReference").bind('keypress', function (event) {
+
+            var regex = new RegExp("^[a-zA-Z0-9_]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                if (event.charCode != 32 && event.charCode != 46) {//if key stroke is space bar, then pass. ASCII code for space bar is 32
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        });
+
+       
 </script>
 }

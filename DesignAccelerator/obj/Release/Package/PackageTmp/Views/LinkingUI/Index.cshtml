@@ -5,8 +5,17 @@
     Layout = "~/Views/Shared/_UploadLayout.cshtml";
 }
 <style type="text/css">
-            .no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .no-js #loader {
+        display: none;
+    }
+
+    .js #loader {
+        display: block;
+        position: absolute;
+        left: 100px;
+        top: 0;
+    }
+
     .se-pre-con {
         position: fixed;
         left: 0px;
@@ -16,7 +25,18 @@
         z-index: 9999;
         background: url('/DesignAccelerator/Content/Images/pageLoad.gif') center no-repeat rgb(249,249,249);
         opacity: .8;
-        }
+    }
+
+    .navbar {
+        min-height: 0px;
+    }
+
+    .button {
+        background-color: #af2024;
+        color: #ffffff;
+    }
+
+    
 </style>
 <div class="navbar-static-top">
     <ul class="breadcrumb"></ul>
@@ -34,20 +54,20 @@
 
                 <div class="form-group">
                     <div class="col-md-8">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             @*@Html.LabelFor(m => m.lstProcess, "Select the process", new { @class = "col-md-2 control-label" })*@
                             <label>Select the process</label>
-                            <span class="form-inline">
+                            <span class="form-inline" style="margin-left:45px">
                                 @Html.DropDownListFor(model => model.lstProcess, new SelectList(Model.lstProcess, "", ""), "Select Process", new { @class = "form-control", @required = "Required" })
                             </span>
                             @*<span class="navbar navbar-right">
-                            <input type="checkbox" id="checkboxid" />
-                            </span>*@
+                                <input type="checkbox" id="checkboxid" />
+                                </span>*@
                         </span>
                     </div>
-
+                    
                     <div id='TMF' class="col-md-10">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             <label>Transaction Matrix File</label>
                             &nbsp;<span class="btn btn-file">
                                 <input id="btmf" type="file" accept="xls/xlsx" name="file">
@@ -56,7 +76,7 @@
                     </div>
 
                     <div id='SBF' class="col-md-10">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             <label>Scenario Builder File</label>
                             &nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
                                 <input id="bsbf" type="file" accept="xls/xlsx" name="file">
@@ -65,16 +85,16 @@
                     </div>
 
                     <div id='TSF' class="col-md-10">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             <label>Test Scenario File</label>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
-                                <input id="btsf" type="file" accept="xls/xlsx" name="file">
+                                <input id="btsf" type="file" accept="xls/xlsx" style="margin-left: -10px" name="file">
                             </span>
                         </span>
                     </div>
 
                     <div id='TDF' class="col-md-10">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             <label>Test Design File</label>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
                                 <input id="btdf" type="file" accept="xls/xlsx" name="file">
@@ -83,31 +103,32 @@
                     </div>
 
                     <div id='TF' class="col-md-10">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             <label>Traceability Matrix File</label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
                                 <input id="btrf" type="file" accept="xls/xlsx" name="file">
                             </span>
                         </span>
                     </div>
 
                     <div id='runPlanid' class="col-md-10">
-                        <span class="navbar navbar-right">
+                        <span class="navbar navbar-left">
                             <label>Test Design File</label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
-                                <input id="runPlanFileId" type="file" accept="xls/xlsx" name="file">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-file">
+                                <input id="runPlanFileId" type="file" accept="xls/xlsx" style="margin-left:35px" name="file">
                             </span>
                         </span>
                     </div>
+                    <div>
+                        @*<input type="button" class="btn btn-default; button" name="ExportDA" value="Export DA"  onclick="location.href='@Url.Action("Index", "ExportDesignAccelerator")'">*@
+                    </div>
 
                 </div>
+                <br />
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="btnSave" type="submit" value="Submit" name="action:Add" class="btn btn-default" />
-                        &nbsp;&nbsp;&nbsp;<input id="btnReset" type="submit" value="Reset" name="action:Add" class="btn btn-default" />
+                    <div class="col-md-offset-2 col-md-10" style="margin-left:175px">
+                        <input id="btnSave" type="submit" value="Submit" name="action:Add" class="btn btn-default; button" />
+                        &nbsp;&nbsp;&nbsp;<input id="btnReset" type="submit" value="Reset" name="action:Add" class="btn btn-default; button" />
                     </div>
                 </div>
             }
@@ -120,7 +141,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".se-pre-con").fadeOut("slow");
-           
+
             var process;
             $("#TMF").hide(); //TransactionMatrixFile
             $("#SBF").hide(); //ScenarioBuilderFile
@@ -155,6 +176,8 @@
                             $("#TMF").show();
                             $("#SBF").hide();
                             $("#TDF").hide();
+                            $("#TSF").hide();
+                            $("#TF").hide();
                             $("#runPlanid").hide();
                         }
                         break;
@@ -221,32 +244,41 @@
                             $("#runPlanid").hide();
                         }
                         break;
-                        case 'Run Plan':
-                            if (selectedVal == 'Run Plan') {
-                                $("#TMF").hide();
-                                $("#SBF").hide();
-                                $("#TDF").hide();
-                                $("#TSF").hide();
-                                $("#runPlanid").show();
-                                 
-                            }
-                            break;
+                    case 'Run Plan':
+                        if (selectedVal == 'Run Plan') {
+                            $("#TMF").hide();
+                            $("#SBF").hide();
+                            $("#TDF").hide();
+                            $("#TSF").hide();
+                            $("#runPlanid").show();
+
+                        }
+                    case 'Export DA':
+                        if (selectedVal == 'Export DA') {
+                            $("#TMF").hide();
+                            $("#SBF").hide();
+                            $("#TDF").hide();
+                            $("#TSF").hide();
+                            $("#TF").hide();
+                            $("#runPlanid").hide();
+                        }
+                        break;
                     default:
 
                 }
             })
 
             $("#btnSave").on("click", function (e) {
-                
+
                 var valdationstatus;
-                
-                if (process == "Rule of 1 - Txn Matrix" || process == "Rule of N - Txn Matrix" || process == "Scenario Builder Template") {
+
+                if (process == "Rule of 1 - Txn Matrix" || process == "Rule of N - Txn Matrix" || process == "Scenario Builder Template"||process=="Export DA") {
                     valdationstatus = true;
                 }
                 else if (process == "Business Rule" || process == "Interface" || process == "Channels&Alerts" || process == "Reports" ||
                         process == "Scenario Stitching" || process == "Test Design" || process == "Traceability Matrix" || process == "Run Plan") {
-                   
-                        valdationstatus = dovalidations();
+
+                    valdationstatus = dovalidations();
                 }
                 else { valdationstatus = dovalidations1(); }
 
@@ -261,11 +293,11 @@
                     var files1 = $("#btdf").get(0).files;
                     var files2 = $("#btsf").get(0).files;
                     var getRunPlanFile = $("#runPlanFileId").get(0).files;
-                            
+
                     var formData = new FormData($('form')[0]);
                     //var formData = new FormData();
                     formData.append("sProcess", process);
-                    
+
                     if (files.length > 0) {
                         formData.append("files", files[0]);
                     }
@@ -275,11 +307,10 @@
                     else if (files2.length > 0) {
                         formData.append(files2, files2[0]);
                     }
-                    else if (getRunPlanFile.length > 0)
-                    {
+                    else if (getRunPlanFile.length > 0) {
                         formData.append(getRunPlanFile, getRunPlanFile[0]);
                     }
-                    
+
                     // setting the URL where ajax is used
                     var MyAppUrlSettings = {
                         MyUsefulUrl: '@Url.Action("Matrix", "LinkingUI")'
@@ -291,19 +322,19 @@
                     $.ajax({
                         cache: false,
                         url: MyAppUrlSettings.MyUsefulUrl,
-                        enctype : "multipart/form-data",
+                        enctype: "multipart/form-data",
                         data: formData,//
                         async: true,
                         type: 'POST',
                         contentType: false,
                         processData: false
-                       
+
                     }).done(function (data) {
                         $.unblockUI();
                         //get the file name for download
                         if (data.fileName != "") {
                             //use window.location.href for redirect to download action for download the file
-                            
+
                             window.location.href = "@Url.RouteUrl(new
                                                { Controller = "LinkingUI", Action = "Download" })/?filePath=" + data.fileName;
                         }
@@ -316,31 +347,30 @@
             })
 
             function dovalidations() {
-                
+
                 var tmFile1 = $('#btmf').val()
                 var tmFile3 = $('#btdf').val()
                 var tmFile4 = $('#btsf').val()
                 var tmFile5 = $('#runPlanFileId').val();
                 //var regex = new RegExp("(xls|xlsx)$");
-                if (tmFile1 == '' && tmFile3 == '' && tmFile4 == '' && tmFile5 =='') //  
+                if (tmFile1 == '' && tmFile3 == '' && tmFile4 == '' && tmFile5 == '') //
                 {
                     alert("Please, check the correct file to upload..");
                 }
-                else
-                {
+                else {
                     var extn1 = tmFile1.split('.').pop().toLowerCase();
                     var extn3 = tmFile3.split('.').pop().toLowerCase();
                     var extn4 = tmFile4.split('.').pop().toLowerCase();
                     var extn5 = tmFile5.split('.').pop().toLowerCase();
                     //var extn = $("#btsf").val().split('.').pop().toLowerCase();
-                    if ((extn1 == "xls" | extn1 == "xlsx") | (extn3 == "xls" | extn3 == "xlsx") | (extn4 == "xls" | extn4 == "xlsx") | (extn5 =="xls" | extn5=="xlsx")) {
+                    if ((extn1 == "xls" | extn1 == "xlsx") | (extn3 == "xls" | extn3 == "xlsx") | (extn4 == "xls" | extn4 == "xlsx") | (extn5 == "xls" | extn5 == "xlsx")) {
                         //alert("Successfully uploaded...")
                         return true;
                     }
                     else {
                         return false;
                     }
-                    
+
                     //if (!(regex.test(extn))) {
                     //    $(extn1).val('');
                     //    $(extn2).val('');
@@ -351,15 +381,15 @@
                     //else { return false };
                 }
             }
-
+           
             function dovalidations1() {
-                
+
                 var tmFile1 = $('#btmf').val();
                 var tmFile2 = $('#bsbf').val();
                 var tmFile3 = $('#btdf').val();
                 var tmFile4 = $('#btrf').val();
                 var tmFile5 = $('#btsf').val();
-                
+
                 if (tmFile1 == '' && tmFile2 == '' && tmFile3 == '' && tmFile4 == '' && tmFile5 == '') //
                 {
                     alert("Please, check the correct file to upload..");
@@ -406,4 +436,4 @@
     </script>
 
 
-    }
+}
