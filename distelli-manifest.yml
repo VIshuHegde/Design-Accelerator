@@ -34,11 +34,11 @@ gvishu2003/Design-Accelerator:
     - echo "Done PreInstall"
   PostInstall:
     - echo "Begin PostInstall"
-    - echo "Unzip DA-App to Application Directory"
+    - echo "Unzip Design-Accelerator to Application Directory"
     # Using Powershell version 2
-    # - PowerShell (New-Object -COM Shell.Application).NameSpace('"%APPDIR%"').CopyHere((New-Object -COM Shell.Application).NameSpace('"%DIStELLI_INSTALLHOME%\DA-App.zip"').Items(), 1564);
+    # - PowerShell (New-Object -COM Shell.Application).NameSpace('"%APPDIR%"').CopyHere((New-Object -COM Shell.Application).NameSpace('"%DIStELLI_INSTALLHOME%\Design-Accelerator.zip"').Items(), 1564);
     # Using Powershell version 3+
-    - powershell add-type -assemblyname "system.io.compression.filesystem" ; [System.io.compression.zipfile]::ExtractToDirectory('"%DIStELLI_INSTALLHOME%\DA-App.zip"','"%APPDIR%"')
+    - powershell add-type -assemblyname "system.io.compression.filesystem" ; [System.io.compression.zipfile]::ExtractToDirectory('"%DIStELLI_INSTALLHOME%\Design-Accelerator.zip"','"%APPDIR%"')
     - echo "---"
     - echo "Set Directory Attributes"
     - attrib -r %APPDIR%\App_Data /s /d
